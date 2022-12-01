@@ -23,6 +23,13 @@
 
             <button class="text-gray-500 text-xs my-4 hover:text-blue-500" @click="showMoreRepo" v-if="(!showMore && !loading)">{{ loading ? 'Loading more...' : 'Show more' }}</button>
             <button class="text-gray-500 text-xs my-4 hover:text-blue-500" @click="showMoreRepo" v-else>{{ loading ? 'Loading more...' : 'Hide more' }}</button>
+
+            <div class="recent py-4">
+                <h3 class="text-md text-gray-300">Recent activity</h3>
+                <div class="p-4 border border-dashed border-gray-700 rounded mt-4">
+                    <p class="text-xs text-gray-400 leading-5">When you take actions across GitHub, we’ll provide links to that activity here.</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -30,43 +37,31 @@
 <script>
 export default {
     name: 'Sidebar',
+    props: ['user'],
     data(){
         return{
             repositories: '',
-            loggedInUser: '',
             loading: false,
             showMore: false,
         }
     },
-    // watch: {
-    //     showMore: function(){
-    //         this.getUser();
-    //     }
-    // },
-    created(){
-        this.getUser();
+    watch: {
+        user: function(){
+
+        }
+    },
+    mounted(){
+        console.log(this.user)
+        setTimeout(() => {
+            this.getRepository(this.user);
+        }, 1000)
     }, 
     methods:{
-        getUser(){ 
-            const token = localStorage.getItem('token');
-            let config = {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
-            }
-            axios.get('/api/user', config)
-            .then((res) => {
-                this.loggedInUser = res.data.user
-                this.getRepository(res.data.user);
-            }).catch((err) => {
-                console.log(err)
-            })
-        },
         getRepository(user){
-            axios.get('https://api.github.com/users/' + user.username + '/repos')
+            axios.get('https://api.github.com/users/' + user.login + '/repos')
             .then((res) => {
                 this.repositories = res.data
-                console.log(this.repositories)
+                // console.log(this.repositories)
                 this.repositories = this.repositories.slice(0, this.showMore ? -1 : 7)
             }).catch((err) => {
                 console.log(err)
@@ -76,7 +71,7 @@ export default {
             this.loading = !this.loading
             this.showMore = !this.showMore
             setTimeout(() => {
-                this.getUser();
+                this.getRepository(this.user);
                 this.loading = false
             }, 300)
         }

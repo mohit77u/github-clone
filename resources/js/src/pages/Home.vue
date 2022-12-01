@@ -4,13 +4,13 @@
         <Header />
 
         <!-- main -->
-        <section class="main flex flex-wrap px-8 bg-[#010409] min-h-screen">
+        <section class="main flex flex-wrap bg-dark-main min-h-screen">
             <!-- sidebar -->
             <SideBar :user="githubUser" />
 
             <!-- main -->
-            <div class="main-right-content md:ml-[383px] ml-0 p-4 bg-[#010409]">
-
+            <div class="main-right-content p-4 bg-dark-main">
+                <h1 class="text-white">Hello</h1>
             </div>
         </section>
     </div>

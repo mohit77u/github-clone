@@ -1,5 +1,5 @@
 <template>
-    <div class="header bg-white/5 px-8 py-4">
+    <div class="header bg-[#161b22] px-8 py-4">
         <div class="flex flex-wrap items-center justify-between">
             <div class="left lg:w-[350px] w-full">
                 <div class="flex items-center">
@@ -12,7 +12,7 @@
 
                 </div>
             </div>
-            <div class="middle lg:w-5/12 w-full">
+            <div class="middle lg:w-5/12 w-full lg:pl-3">
                 <div class="menu flex items-center gap-x-5">
                     <a href="#" class="text-gray-200 font-medium text-sm hover:text-gray-400">Pull requests</a>
                     <a href="#" class="text-gray-200 font-medium text-sm hover:text-gray-400">Issues</a>

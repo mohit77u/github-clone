@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar md:w-[383px] w-full md:fixed static md:left-0 md:top-16 md:z-40 md:h-full bg-white/5 border-r border-gray-700 py-5 px-8 overflow-y-auto">
+    <div class="sidebar md:w-[383px] w-full md:fixed static md:left-0 md:top-16 md:z-40 md:h-full bg-[#0d1117] border-r border-gray-700 py-5 px-8 overflow-y-auto">
         <div class="top flex flex-wrap items-center justify-between">
             <h3 class="text-md text-gray-300">Top Repository</h3>
             <button class="bg-green-primary px-2 py-1 text-sm rounded text-white flex items-center justify-center gap-x-1">

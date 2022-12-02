@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'animate.css';
-$primary: #84cc16;
-$secondary: #f5bc00;
-$blue: #0f1940;
+
+$primary: red;
+
+.text-red-1{
+    color: $primary;
+}

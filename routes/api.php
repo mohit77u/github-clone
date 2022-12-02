@@ -32,4 +32,5 @@ Route::controller(AuthController::class)->group(function(){
 
 Route::controller(UserController::class)->group(function(){
     Route::get('user', 'authUser')->middleware('auth:api');
+    Route::post('update/username', 'updateUsername');
 });

@@ -31,6 +31,8 @@
                 </div>
             </div>
         </div>
+
+        
     </div>
 </template>
 
@@ -43,11 +45,12 @@ export default {
             repositories: '',
             loading: false,
             showMore: false,
+            
         }
     },
     watch: {
-        user: function(){
-
+        user: function(value){
+            this.getRepository(value);
         }
     },
     mounted(){

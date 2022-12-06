@@ -20,7 +20,6 @@ class UserController extends Controller
 
     public function updateUsername(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'username'  => 'required',
             'id'        => 'required',

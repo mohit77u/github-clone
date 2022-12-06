@@ -25,12 +25,12 @@ use App\Http\Controllers\Api\UserController;
 Route::controller(AuthController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
-    Route::get('logout', 'logout')->middleware('auth:api');
+    Route::get('logout', 'logout');
     Route::post('forgot-password', 'forgotPassword');
     Route::post('reset-password', 'resetPassword');
 });
 
 Route::controller(UserController::class)->group(function(){
-    Route::get('user', 'authUser')->middleware('auth:api');
+    // Route::get('user', 'authUser');
     Route::post('update/username', 'updateUsername');
 });

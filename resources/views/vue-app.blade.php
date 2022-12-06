@@ -12,7 +12,7 @@
     <body class="bg-dark-primary">
 
         <div id="app">
-            <app-component></app-component>
+            <app-component />
         </div>
 
         @vite('resources/js/app.js')

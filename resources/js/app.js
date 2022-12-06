@@ -2,6 +2,13 @@ import './bootstrap';
 
 import { createApp } from 'vue';
 
+// import { Octokit } from 'octokit'
+// const octokit = new Octokit({
+//   auth: import.meta.env.VITE_GITHUB_ACCESS_TOKEN
+// })
+
+// console.log(import.meta.env.VITE_GITHUB_ACCESS_TOKEN)
+
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -33,4 +40,23 @@ app.component('app-component', AppComponent);
 
 import router from './src/routes/routes'
 
-app.use(router).mount('#app');
+import axios from 'axios'
+import UniversalSocialauth from 'universal-social-auth'
+
+
+const options = {
+    providers: {
+      github: {
+        clientId: import.meta.env.VITE_GITHUB_CLIENT_ID,
+        redirectUri: import.meta.env.VITE_GITHUB_CLIENT_CALLBACK
+      },
+    }
+  }
+  
+  const Oauth = new UniversalSocialauth(axios, options)
+
+  app.config.globalProperties.$Oauth = Oauth
+  app.config.globalProperties.$axios = axios
+
+app.use(router)
+.mount('#app');

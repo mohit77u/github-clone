@@ -34,10 +34,27 @@
                         </svg>
                         <span class="dropdown-caret"></span>
                     </a>
-                    <a href="#" class="flex items-center gap-x-1">
-                        <img src="/images/icon-boy.png" class="w-6 h-6 roudned-full" alt="user">
-                        <span class="dropdown-caret"></span>
-                    </a>
+                    <div class="profile relative">
+                        <button class="flex items-center gap-x-1" @click="profile = !profile">
+                            <img :src="loggedInUser.avatar_url" class="w-6 h-6 rounded-full" alt="user">
+                            <span class="dropdown-caret"></span>
+                        </button>
+                        <div class="profile-menu absolute right-0 top-12 min-w-[180px] w-full bg-dark-primary border border-gray-700 rounded" v-if="profile">
+                            <div class="top-menu text-gray-200 text-sm py-3 px-4">
+                                <h5>Signed in as {{ loggedInUser.login }}</h5>
+                            </div>
+                            <div class="bottom  border-t border-gray-700"></div>
+                            <div class="menu-items py-2">
+                                <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Profile</a>
+                                <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Projects</a>
+                                <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Repositories</a>
+                                <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">Account</a>
+                                <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">Setting</a>
+                                <div class="bottom my-1 border-t border-gray-700"></div>
+                                <a href="/logout" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">Logout</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,10 +64,25 @@
 <script>
 export default {
     name: 'Header',
+    props: ['user'],
     data(){
         return{
-
+            loggedInUser: '',
+            profile: false,
         }
-    }
+    },
+    watch: {
+        user: function(value){
+            this.loggedInUser = value
+        }
+    },
+    mounted(){
+        setTimeout(() => {
+            this.loggedInUser = this.user
+        }, 1000)
+    }, 
+    methods: {
+
+    },
 }
 </script>

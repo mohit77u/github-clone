@@ -2,22 +2,39 @@
 
 namespace App\Http\Controllers\Api;
 
+use Exception;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\ForgotPasswordMail;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Mail\ForgotPasswordMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+
+    // get login page
+    public function LoginPage()
+    {
+        return view('auth.login');
+    }
+
+    // get signup page
+    public function SignupPage()
+    {
+        return view('auth.signup');
+    }
+
     public function register(Request $request)
     {
         $input = $request->validate([
             'name'                       => 'required',
+            'username'                   => 'required',
             'email'                      => 'required|unique:users|email',
             'password'                   => 'required',
             'password_confirmation'      => 'required|same:password',
@@ -26,89 +43,91 @@ class AuthController extends Controller
         // bycrypt password
         $input['password'] = Hash::make($input['password']);
 
-        // check if user exists or not
-        $user = User::where('email', $input['email'])->first();
-
-        // if user exists update user else create new user
-        if($user != null)
-        {
-            $user->update([
-                'name'              => $input['name'],
-                'email'             => $input['email'],
-                'password'          => $input['password'],
-            ]);
-        }
-        else 
-        {
-            // store in db table
-            User::create([
-                'name'              => $input['name'],
-                'email'             => $input['email'],
-                'password'          => $input['password'],
-            ]);
-        }
+        // store data
+        User::create([
+            'name'              => $input['name'],
+            'username'          => $input['username'],
+            'email'             => $input['email'],
+            'password'          => $input['password'],
+        ]);
 
         // return response
-        return response([
-            'message' => 'User successfully registered',
-        ], 200);
+        return redirect()->route('login');
+        // return response([
+        //     'message' => 'User successfully registered',
+        // ], 200);
     }
 
     public function login(Request $request)
     {
         $request->validate([
-            'email'                      => 'required|email',
-            'password'                   => 'required',
+            'email'      => 'required|email',
+            'password'   => 'required',
         ]);
 
         $login = $request->only('email', 'password');
 
         if (!Auth::attempt($login)) {
-            return response([
-                'errors' => [
-                    'email' => ['Email does not exist or not verified'],
-                    'password' => ['Password incorrect/invalid'],
-                ]
-            ], 401);
+            throw ValidationException::withMessages([
+                'email'     => 'Email does not exist or not verified',
+                'password'  => 'Password incorrect/invalid',
+            ]);
         }
 
-        /**
-         * @var User $user
-         */
         $user = Auth::user();
-        $token = $user->createToken($user->name);
 
-        $user->update([
-            'token' => $token->accessToken,
-        ]);
+        return redirect('/' .strtoLower($user->username) . '/home');
+    }
 
-        return response([
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'created_at' => $user->created_at,
-            'updated_at' => $user->updated_at,
-            'token' => $token->accessToken,
-            'token_expires_at' => $token->token->expires_at,
-        ], 200);
+    // to redirect to github login page
+    public function gitRedirect()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+       
+    // get the callback to store dtails and login user
+    public function gitCallback()
+    {
+        $user = Socialite::driver('github')->user();
+      
+        // search if user exisst
+        $searchUser = User::where('github_id', $user->id)->first();
+  
+        if($searchUser)
+        {
+            // make user to auth user
+            Auth::login($searchUser);
+ 
+            // redirect to home page
+            return redirect('/' .strtoLower($searchUser->username) . '/home');
+  
+        }
+        else
+        {
+            // create user
+            $gitUser = User::create([
+                'name'      => $user->getName(),
+                'username'  => $user->getNickname(),
+                'email'     => $user->getEmail(),
+                'github_id' => $user->getId(),
+                'auth_type' => 'github',
+                'password'  => Hash::make('password')
+            ]);
+ 
+            // make user to auth user
+            Auth::login($gitUser);
+  
+            // redirect to home page
+            return redirect('/' .strtoLower($gitUser->username) . '/home');
+        }
     }
 
     // forgot password
-    public function logout(Request $request)
+    public function logout()
     {
-        /**
-         * @var User $user
-        */
+        Auth::logout();
 
-        $user = Auth::user();
-
-        $user->update([
-            'token' => null,
-        ]);
-
-        return response([
-            'message' => 'User successfully logged out'
-        ], 200);
+        return redirect()->route('login');
 
     }
 
@@ -189,4 +208,6 @@ class AuthController extends Controller
             'message'=>'Password Successfully Updated.'
         ], 200);
     }
+
+    
 }

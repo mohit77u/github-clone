@@ -35,14 +35,20 @@
             </div>
             <div class="p-6 rounded bg-white/5 border border-white/10 mt-3 text-center">
                 <p class="text-slate-300 text-sm">Don't have an account? <router-link to='/signup' class="text-blue-500"> Sign up →</router-link></p>
+                <!-- <GitHubLogin /> -->
+                <button class="px-3 py-1.5 border border-gray-700 rounded text-white mt-3 text-sm" @click="useAuthProvider('github')">GitHub Login</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+// import GitHubLogin from './GitHubLogin.vue'
 export default {
     name: "LoginPage",
+    components: {
+        // GitHubLogin,
+    },
     data(){
         return{
             login: {},
@@ -62,7 +68,8 @@ export default {
                 this.loading = false
                 this.error = err.response.data.errors
             })
-        }
+        },
+
     }
 }
 </script>

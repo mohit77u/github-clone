@@ -89,42 +89,34 @@ class AuthController extends Controller
     public function gitCallback()
     {
         $user = Socialite::driver('github')->user();
-      
-        // search if user exisst
-        $searchUser = User::where('github_id', $user->id)->first();
-  
-        if($searchUser)
-        {
-            // make user to auth user
-            Auth::login($searchUser);
- 
-            // redirect to home page
-            return redirect('/' .strtoLower($searchUser->username) . '/home');
-  
-        }
-        else
-        {
-            // create user
-            $gitUser = User::create([
-                'name'      => $user->getName(),
-                'username'  => $user->getNickname(),
-                'email'     => $user->getEmail(),
-                'github_id' => $user->getId(),
-                'auth_type' => 'github',
-                'password'  => Hash::make('password')
-            ]);
- 
-            // make user to auth user
-            Auth::login($gitUser);
-  
-            // redirect to home page
-            return redirect('/' .strtoLower($gitUser->username) . '/home');
-        }
+
+        $user = User::updateOrCreate([
+            'github_id' => $user->id,
+        ], [
+            'name'                  => $user->getName() ? $user->getName() : $user->getNickname(),
+            'username'              => $user->getNickname(),
+            'email'                 => $user->getEmail(),
+            'password'              => Hash::make('password'),
+            'github_id'             => $user->getId(),
+            'auth_type'             => 'github',
+            'access_token'          => $user->token,
+        ]);
+
+        // make user to auth user
+        Auth::login($user);
+    
+        // redirect to home page
+        return redirect('/');
     }
 
     // forgot password
     public function logout()
     {
+        $user = Auth::user();
+
+        $user->access_token = null;
+        $user->save();
+
         Auth::logout();
 
         return redirect()->route('login');

@@ -1,18 +1,16 @@
 <template>
 <div>
-    <!-- top header -->
-    <Header :user="githubUser" />
 
     <!-- main -->
     <section class="main flex flex-wrap bg-dark-main min-h-screen">
         <!-- sidebar -->
-        <SideBar :user="githubUser" />
+        <SideBar :refresh="refresh" />
 
         <!-- main -->
         <div class="main-right-content bg-dark-main flex-auto px-8 py-5 md:w-[calc(100%-350px)] w-full">
             <div class="flex flex-wrap">
                 <!-- left side main content -->
-                <div class="lg:w-8/12 md:w-6/12 w-full">
+                <div class="lg:w-8/12 md:w-6/12 w-full md:pr-6 pr-0">
 
                     <!-- top heading main -->
                     <div class="top">
@@ -40,20 +38,20 @@
                     <!-- main grid create readme -->
                     <div class="grid md:grid-cols-2 grid-cols-1 gap-5">
                         <div class="left create">
-                            <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4 h-full">
+                            <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4">
                                 <h4 class="text-gray-300 font-medium mb-3 text-[16px]">Start a new repository</h4>
                                 <p class="text-gray-400 text-[14px] mb-3 leading-6">A repository contains all of your project's files, revision history, and collaborator discussion.</p>
 
                                 <!-- form top -->
-                                <div class="form-top flex items-center gap-x-1">
-                                    <p class="text-gray-300 text-sm">{{githubUser.login}}/</p>
-                                    <input type="text" placeholder="name your new repository..." class="border border-gray-700 focus:border-blue-400 focus:outline focus:ring-blue-400 px-3 py-1 text-sm rounded w-full bg-dark-main text-gray-300">
-                                </div>
+                                <form @submit.prevent="CreateRepo">
+                                    <div class="form-top flex items-center gap-x-1">
+                                        <p class="text-gray-300 text-sm">{{githubUser.login}}/</p>
+                                        <input type="text" placeholder="name your new repository..." class="border border-gray-700 focus:border-blue-400 focus:outline focus:ring-blue-400 px-3 py-1 text-sm rounded w-full bg-dark-main text-gray-300" v-model="repo.name">
+                                    </div>
 
                                 <!-- create form -->
-                                <form class="mt-4">
-                                    <div class="form-group flex items-start gap-2 mb-3">
-                                        <input type="radio" id="public" name="type" value="public" class="mt-1.5 w-3.5 h-3.5 bg-gray-400 border border-gray-500">
+                                    <div class="form-group flex items-start gap-2 mb-3 mt-4">
+                                        <input type="radio" id="public" name="type" value="public" class="mt-1.5 w-3.5 h-3.5 bg-gray-400 border border-gray-500" v-model="repo.type">
                                         <label for="public" class="flex items-start gap-x-2">
                                             <svg aria-hidden="true" height="36" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true" class="fill-gray-400">
                                                 <path fill-rule="evenodd" d="M3 2.75A2.75 2.75 0 015.75 0h14.5a.75.75 0 01.75.75v20.5a.75.75 0 01-.75.75h-6a.75.75 0 010-1.5h5.25v-4H6A1.5 1.5 0 004.5 18v.75c0 .716.43 1.334 1.05 1.605a.75.75 0 01-.6 1.374A3.25 3.25 0 013 18.75v-16zM19.5 1.5V15H6c-.546 0-1.059.146-1.5.401V2.75c0-.69.56-1.25 1.25-1.25H19.5z"></path>
@@ -66,7 +64,7 @@
                                         </label>
                                     </div>
                                     <div class="form-group flex items-start gap-2 mb-3">
-                                        <input type="radio" id="private" name="type" value="public" class="mt-1.5 w-3.5 h-3.5 bg-gray-400 border border-gray-500">
+                                        <input type="radio" id="private" name="type" value="private" class="mt-1.5 w-3.5 h-3.5 bg-gray-400 border border-gray-500" v-model="repo.type">
                                         <label for="private" class="flex items-start gap-x-2">
                                             <svg aria-hidden="true" height="36" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true" class="fill-gray-400">
                                                 <path fill-rule="evenodd" d="M6 9V7.25C6 3.845 8.503 1 12 1s6 2.845 6 6.25V9h.5a2.5 2.5 0 012.5 2.5v8a2.5 2.5 0 01-2.5 2.5h-13A2.5 2.5 0 013 19.5v-8A2.5 2.5 0 015.5 9H6zm1.5-1.75C7.5 4.58 9.422 2.5 12 2.5c2.578 0 4.5 2.08 4.5 4.75V9h-9V7.25zm-3 4.25a1 1 0 011-1h13a1 1 0 011 1v8a1 1 0 01-1 1h-13a1 1 0 01-1-1v-8z"></path>
@@ -78,13 +76,13 @@
                                         </label>
                                     </div>
                                     <div class="form-group my-5">
-                                        <button class="bg-green-primary px-3 py-1.5 text-white font-semibold rounded text-xs">Create new repository</button>
+                                        <button type="submit" class="bg-green-primary px-3 py-1.5 text-white font-semibold rounded text-xs">Create new repository</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="right">
-                            <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4 h-full">
+                            <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4 pb-8">
                                 <h4 class="text-gray-300 font-medium mb-3 text-[16px]">Introduce yourself with a profile README</h4>
                                 <p class="text-gray-400 text-[14px] mb-3 leading-6">Share information about yourself by creating a profile README, which appears at the top of your profile page.</p>
 
@@ -204,8 +202,15 @@
                     </div>
                 </div>
                 <!-- right side main content -->
-                <div class="lg:w-4/12 md:w-6/12 w-full">
-
+                <div class="lg:w-4/12 md:w-6/12 w-full md:pl-6 pl-0">
+                    <div class="right my-3 border border-[#30363d] bg-white/5 rounded pb-4 relative max-h-[200px]">
+                        <img src="/images/bg.jpg" alt="bg" class="w-full object-cover max-h-[200px]">
+                        <div class="content absolute left-0 top-0 px-4 py-2">
+                            <h4 class="text-gray-300 font-medium mb-2 mt-2 text-[16px]">Start coding instantly with GitHub Codespaces</h4>
+                            <p class="text-gray-400 text-[13px] mt-4 mb-5 w-8/12">Spin up fully configured dev environments on powerful VMs that start in seconds. Get up to 60 hours a month of free time.</p>
+                            <a href="https://github.com/codespaces" target="blank" class="w-full text-gray-200 bg-white/10 border border-purple-800 rounded px-3 py-1 inline-block text-[14px] text-center mt-3 hover:bg-white/5">Get Started</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -216,9 +221,6 @@
         <div class="popup-main max-w-[350px] min-w-[350px] rounded border border-gray-700 bg-[#0d1117] py-5">
             <div class="popup-head px-5 flex justify-between items-center">
                 <h2 class="text-white text-sm pb-1.5">Connect GitHub</h2>
-                <!-- <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="text-gray-400 hover:text-blue-400" fill="#ddd">
-                        <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
-                    </svg> -->
             </div>
             <div class="popup-top-bar mt-4 w-full p-4 border-t border-b border-[rgba(187,128,9,0.4)] bg-gradient-to-b from-[rgba(187,128,9,0.15)] to-[rgba(187,128,9,0.15)]">
                 <p class="text-gray-400 text-sm">Connect your GitHub account now.</p>
@@ -257,14 +259,22 @@
 </template>
 
 <script>
-import Header from '../components/Header.vue';
 import SideBar from '../components/SideBar.vue';
+import { usersStore } from '../stores/usersStore'
+import { Octokit } from "@octokit/core";
 
 export default {
     name: 'HomePage',
     components: {
         SideBar,
-        Header,
+    },
+    setup() {
+        const store = usersStore()
+
+        return {
+            // you can return the whole store instance to use it in the template
+            store,
+        }
     },
     data() {
         return {
@@ -273,41 +283,26 @@ export default {
             githubUser: '',
             error: '',
             toast: false,
+            repo: {},
+            refresh: false,
         }
     },
-    created() {
-        this.getUser();
-        console.log(this.$route.params.username)
+    mounted() {
+        setTimeout(()=> {
+            this.getGithubUser();
+        }, 500)
     },
     methods: {
-        getUser() {
-            axios.get('/user')
-                .then((res) => {
-                    this.user = res.data.user
-                    const username = res.data.user.username
-                    if (username == null || username == '') {
-                        this.connect = true
-                    } else {
-                        this.getGithubUser(username);
-                    }
-                }).catch((err) => {
-                    console.log(err)
-                })
+        // get github user
+        getGithubUser(){
+            this.githubUser = this.store.gitHubUser
         },
-        getGithubUser(username) {
-            axios.get('https://api.github.com/users/' + username)
-                .then((res) => {
-                    this.githubUser = res.data
-                }).catch((err) => {
-                    console.log(err)
-                })
-        },
+        // update username
         updateUserName() {
             let data = {
                 id: this.user.id,
                 username: this.user.username
             }
-            console.log(data)
             axios.post('/api/update/username', data)
                 .then((res) => {
                     this.connect = false
@@ -318,6 +313,31 @@ export default {
                     this.error = err.response.data.errors
                 })
         },
+        // create repo
+        async CreateRepo(){
+            const data = {
+                name: this.repo.name,
+            }
+            if (this.repo.type == 'private') {
+                data.private = true
+            } else {
+                data.private = false
+            }
+            const octokit = new Octokit({
+                auth: this.store.user.access_token
+            })
+
+            // call function to create repo
+            await octokit.request('POST /user/repos', {
+                name: data.name,
+            })
+            .then((res) => {
+                console.log(res)
+                this.refresh = !this.refresh
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
     },
 
 }

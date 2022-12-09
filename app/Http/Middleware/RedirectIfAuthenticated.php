@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 $user = Auth::user();
-                return redirect('/' .strtoLower($user->username) . '/home');
+                return redirect('/');
             }
         }
 

@@ -15,10 +15,13 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
+        "@octokit/rest": "^19.0.5",
         "@vitejs/plugin-vue": "^3.2.0",
         "animate.css": "^4.1.1",
+        "isomorphic-fetch": "^3.0.0",
         "moment": "^2.29.4",
         "octokit": "^2.0.10",
+        "pinia": "^2.0.27",
         "sass": "^1.56.1",
         "universal-social-auth": "^0.2.6",
         "vue-axios": "^3.5.2",

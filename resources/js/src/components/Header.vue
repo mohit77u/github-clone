@@ -1,6 +1,6 @@
 <template>
     <div class="header bg-[#161b22] py-4">
-        <div class="flex flex-wrap items-center justify-between">
+        <div class="flex flex-wrap items-center">
             <div class="left lg:w-[350px] w-full pl-6">
                 <div class="flex items-center">
                     <router-link to="/">
@@ -21,7 +21,7 @@
                     <a href="#" class="text-gray-200 font-medium text-sm hover:text-gray-400">Explore</a>
                 </div>
             </div>
-            <div class="last lg:w-4/12 w-full pr-6">
+            <div class="last lg:w-4/12 w-full pr-6 ml-auto">
                 <div class="menu flex items-center justify-end gap-x-4">
                     <a href="#" class="">
                         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell" fill="white">
@@ -39,9 +39,9 @@
                             <img :src="loggedInUser.avatar_url" class="w-6 h-6 rounded-full" alt="user">
                             <span class="dropdown-caret"></span>
                         </button>
-                        <div class="profile-menu absolute right-0 top-12 min-w-[180px] w-full bg-dark-primary border border-gray-700 rounded" v-if="profile">
-                            <div class="top-menu text-gray-200 text-sm py-3 px-4">
-                                <h5>Signed in as {{ loggedInUser.login }}</h5>
+                        <div class="profile-menu absolute right-0 top-12 min-w-[180px] w-full bg-dark-primary border border-gray-700 rounded z-30" v-if="profile">
+                            <div class="top-menu text-gray-300 text-sm py-3 px-4">
+                                <h5>Signed in as <span class="font-semibold">{{ loggedInUser.login }}</span></h5>
                             </div>
                             <div class="bottom  border-t border-gray-700"></div>
                             <div class="menu-items py-2">
@@ -62,27 +62,37 @@
 </template>
 
 <script>
+import { usersStore } from '../stores/usersStore'
+
 export default {
     name: 'Header',
-    props: ['user'],
+    setup() {
+        const store = usersStore()
+
+        return {
+            // you can return the whole store instance to use it in the template
+            store,
+        }
+    },
     data(){
         return{
             loggedInUser: '',
             profile: false,
         }
     },
-    watch: {
-        user: function(value){
-            this.loggedInUser = value
-        }
+    computed: {
+
     },
     mounted(){
-        setTimeout(() => {
-            this.loggedInUser = this.user
-        }, 1000)
+        this.getloggedInUser();
     }, 
     methods: {
-
+        getloggedInUser(){
+            this.store.getUser()
+            setTimeout(() => {
+                this.loggedInUser = this.store.gitHubUser
+            }, 500)
+        }
     },
 }
 </script>

@@ -15,14 +15,16 @@
         <!-- repositories data -->
         <div class="repositories pt-2 pb-12">
             <div class="repo py-1.5" v-for="(repo, index) in repositories" :key="index">
-                <a href="#" class="flex items-center">
+                <router-link :to="repo.full_name" class="flex items-center">
                     <img :src="repo.owner.avatar_url" :alt="repo.name" class="w-5 h-5 rounded-full">
                     <h4 class="text-gray-300 text-[14px] ml-2">{{repo.full_name}}</h4>
-                </a>
+                </router-link>
             </div>
 
-            <button class="text-gray-500 text-xs my-4 hover:text-blue-500" @click="showMoreRepo" v-if="(!showMore && !loading)">{{ loading ? 'Loading more...' : 'Show more' }}</button>
-            <button class="text-gray-500 text-xs my-4 hover:text-blue-500" @click="showMoreRepo" v-else>{{ loading ? 'Loading more...' : 'Hide more' }}</button>
+            <div v-if="repositories.length >= 7">
+                <button class="text-gray-500 text-xs my-4 hover:text-blue-500" @click="showMoreRepo" v-if="(!showMore && !loading)">{{ loading ? 'Loading more...' : 'Show more' }}</button>
+                <button class="text-gray-500 text-xs my-4 hover:text-blue-500" @click="showMoreRepo" v-else>{{ loading ? 'Loading more...' : 'Hide more' }}</button>
+            </div>
 
             <div class="recent py-4">
                 <h3 class="text-md text-gray-300">Recent activity</h3>
@@ -37,9 +39,18 @@
 </template>
 
 <script>
+import { Octokit } from "@octokit/core";
+import { usersStore } from '../stores/usersStore'
+
 export default {
     name: 'Sidebar',
-    props: ['user'],
+    props: ['refresh'],
+    setup() {
+        const store = usersStore()
+        return {
+            store,
+        }
+    },
     data(){
         return{
             repositories: '',
@@ -49,22 +60,25 @@ export default {
         }
     },
     watch: {
-        user: function(value){
-            this.getRepository(value);
+        refresh(){
+            this.getRepository();
         }
     },
     mounted(){
-        console.log(this.user)
-        setTimeout(() => {
-            this.getRepository(this.user);
-        }, 1000)
+        setTimeout(()=> {
+            this.getRepository();
+        }, 300)
     }, 
     methods:{
-        getRepository(user){
-            axios.get('https://api.github.com/users/' + user.login + '/repos')
+        async getRepository(){
+            const octokit = new Octokit({
+                auth: this.store.user.access_token
+            })
+            await octokit.request('GET /users/{username}/repos', {
+                username: this.store.user.username
+            })
             .then((res) => {
                 this.repositories = res.data
-                // console.log(this.repositories)
                 this.repositories = this.repositories.slice(0, this.showMore ? -1 : 7)
             }).catch((err) => {
                 console.log(err)
@@ -74,7 +88,7 @@ export default {
             this.loading = !this.loading
             this.showMore = !this.showMore
             setTimeout(() => {
-                this.getRepository(this.user);
+                this.getRepository();
                 this.loading = false
             }, 300)
         }

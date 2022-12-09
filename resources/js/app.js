@@ -1,12 +1,7 @@
+window.global ||= window;
 import './bootstrap';
 
 import { createApp } from 'vue';
-
-// import { Octokit } from 'octokit'
-// const octokit = new Octokit({
-//   auth: import.meta.env.VITE_GITHUB_ACCESS_TOKEN
-// })
-
 // console.log(import.meta.env.VITE_GITHUB_ACCESS_TOKEN)
 
 /**
@@ -40,23 +35,9 @@ app.component('app-component', AppComponent);
 
 import router from './src/routes/routes'
 
-import axios from 'axios'
-import UniversalSocialauth from 'universal-social-auth'
-
-
-const options = {
-    providers: {
-      github: {
-        clientId: import.meta.env.VITE_GITHUB_CLIENT_ID,
-        redirectUri: import.meta.env.VITE_GITHUB_CLIENT_CALLBACK
-      },
-    }
-  }
-  
-  const Oauth = new UniversalSocialauth(axios, options)
-
-  app.config.globalProperties.$Oauth = Oauth
-  app.config.globalProperties.$axios = axios
+import { createPinia } from 'pinia'
+const pinia = createPinia()
 
 app.use(router)
+.use(pinia)
 .mount('#app');

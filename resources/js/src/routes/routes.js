@@ -1,38 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
+import Repository from '../pages/repository/RepoSingle.vue'
 
 const routes = [
   {
-    path: '/:username/home',
-    name: 'home',
+    path: '/',
     component: Home,
-    meta: {
-      authRequired: true,
-      guest: false,
-    }
   },
-  // {
-  //   path: '/signup',
-  //   name: 'SignUp',
-  //   component: SignUp,
-  //   meta: {
-  //     guest: true,
-  //   }
-  // },
-  // {
-  //   path: '/login',
-  //   name: 'Login',
-  //   component: Login,
-  //   meta: {
-  //     guest: true,
-  //   }
-  // },
-  // {
-  //   path: '/auth/:provider/callback',
-  //   component: {
-  //     template: '<div class="auth-component"></div>'
-  //   }
-  // },
+  {
+    path: '/:username/home',
+    name: 'homeUser',
+    component: Home,
+  },
+  {
+    path: '/:username/:repository',
+    name: 'Repository',
+    component: Repository,
+  },
 ]
 
 const router = createRouter({

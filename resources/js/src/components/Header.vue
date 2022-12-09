@@ -21,7 +21,7 @@
                     <a href="#" class="text-gray-200 font-medium text-sm hover:text-gray-400">Explore</a>
                 </div>
             </div>
-            <div class="middle lg:w-4/12 w-full pr-6">
+            <div class="last lg:w-4/12 w-full pr-6">
                 <div class="menu flex items-center justify-end gap-x-4">
                     <a href="#" class="">
                         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell" fill="white">

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
 import Repository from '../pages/repository/RepoSingle.vue'
+import Profile from '../pages/user/Profile.vue'
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
     path: '/:username/:repository',
     name: 'Repository',
     component: Repository,
+  },
+  {
+    path: '/:username',
+    name: 'Profile',
+    component: Profile,
   },
 ]
 

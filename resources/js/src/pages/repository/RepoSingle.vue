@@ -9,7 +9,7 @@
                         </svg>
                     </span>
                     <span class="text-xl">
-                        <a href="#" class="text-blue-500 hover:underline underline-offset-2">{{ $route.params.username }}</a>
+                        <router-link :to="{name: 'Profile', params: { username: $route.params.username }}" class="text-blue-500 hover:underline underline-offset-2">{{ $route.params.username }}</router-link>
                         <span class="mx-1 text-gray-400">/</span>
                         <a href="#" class="text-blue-500 hover:underline underline-offset-2">{{$route.params.repository}}</a>
                     </span>
@@ -26,25 +26,25 @@
                         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
                             <path fill-rule="evenodd" d="M1.679 7.932c.412-.621 1.242-1.75 2.366-2.717C5.175 4.242 6.527 3.5 8 3.5c1.473 0 2.824.742 3.955 1.715 1.124.967 1.954 2.096 2.366 2.717a.119.119 0 010 .136c-.412.621-1.242 1.75-2.366 2.717C10.825 11.758 9.473 12.5 8 12.5c-1.473 0-2.824-.742-3.955-1.715C2.92 9.818 2.09 8.69 1.679 8.068a.119.119 0 010-.136zM8 2c-1.981 0-3.67.992-4.933 2.078C1.797 5.169.88 6.423.43 7.1a1.619 1.619 0 000 1.798c.45.678 1.367 1.932 2.637 3.024C4.329 13.008 6.019 14 8 14c1.981 0 3.67-.992 4.933-2.078 1.27-1.091 2.187-2.345 2.637-3.023a1.619 1.619 0 000-1.798c-.45-.678-1.367-1.932-2.637-3.023C11.671 2.992 9.981 2 8 2zm0 8a2 2 0 100-4 2 2 0 000 4z"></path>
                         </svg>
-                        <span>Unwatch <span class="text-center text-gray-300 text-[12px] font-semibold mx-2">1</span> <span class="dropdown-caret"></span></span>
+                        <span>Unwatch <span class="text-center text-gray-300 text-[12px] font-semibold mx-2">{{repo.watchers_count}}</span> <span class="dropdown-caret"></span></span>
                     </button>
-                    <button class="px-4 py-1.5 text-gray-400 border border-gray-700 rounded-md text-[12px] hover:border-gray-300 bg-white/5 flex justify-center items-center gap-2" disabled>
+                    <button class="px-4 py-1.5 text-gray-400 border border-gray-700 rounded-md text-[12px] hover:border-gray-300 bg-white/5 flex justify-center items-center gap-2" :disabled="repo.fork ? 'disabled' : ''">
                         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
                             <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
                         </svg>
-                        <span>Fork <span class="text-center text-gray-300 text-[12px] font-semibold mx-2">0</span> <span class="dropdown-caret"></span></span>
+                        <span>Fork <span class="text-center text-gray-300 text-[12px] font-semibold mx-2">{{repo.forks_count}}</span> <span class="dropdown-caret"></span></span>
                     </button>
                     <button class="px-4 py-1.5 text-gray-400 border border-gray-700 rounded-md text-[12px] hover:border-gray-300 bg-white/5 flex justify-center items-center gap-2">
-                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
+                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" :class="repo.stargazers_count > 0 ? 'fill-yellow-300' : 'fill-gray-400'">
                             <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
                         </svg>
-                        <span>Star <span class="text-center text-gray-300 text-[12px] font-semibold mx-2">0</span> <span class="dropdown-caret"></span></span>
+                        <span>Star <span class="text-center text-gray-300 text-[12px] font-semibold mx-2">{{repo.stargazers_count}}</span> <span class="dropdown-caret"></span></span>
                     </button>
                 </div>
             </div>
 
             <div class="repo-menus my-5 border-b border-gray-800">
-                <ul class="flex items-center gap-1">
+                <ul class="flex items-center gap-1 overflow-auto">
                     <li class="pb-1 border-b-2 border-orange-500">
                         <button class="px-3 py-1.5 hover:bg-white/10 text-gray-300 font-medium rounded-md text-[14px] flex justify-center items-center gap-2">
                             <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
@@ -120,39 +120,37 @@
                 </ul>
             </div>
 
-            <div class="empty-repo-details my-7 rounded lg:w-7/12 md:w-9/12 w-full mx-auto">
-                <div class="repo-top-bar w-full p-4 rounded border border-[rgba(56,139,253,0.4)] bg-gradient-to-b from-[rgba(56,139,253,0.15)] to-[rgba(56,139,253,0.15)]">
+            <div class="empty-repo-details my-7 2xl:w-9/12 lg:w-10/12 md:w-9/12 w-full mx-auto">
+                <!-- graidnet blue details -->
+                <div class="repo-top-bar w-full p-4 rounded rounded-b-none border border-[rgba(56,139,253,0.4)] bg-gradient-to-b from-[rgba(56,139,253,0.15)] to-[rgba(56,139,253,0.15)]">
                     <h3 class="text-gray-400 text-md">Quick setup — if you’ve done this kind of thing before</h3>
-                    <div class="url-bar flex justify-between my-2">
-                        <div class="left flex gap-8 md:w-4/12 w-full">
-                            <button class="px-2 py-1 border border-gray-700 bg-dark-primary/70 text-gray-300 font-medium rounded-md text-[12px] flex justify-center items-center gap-2">
-                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
-                                    <path d="M4.927 5.427l2.896 2.896a.25.25 0 00.354 0l2.896-2.896A.25.25 0 0010.896 5H8.75V.75a.75.75 0 10-1.5 0V5H5.104a.25.25 0 00-.177.427z"></path><path d="M1.573 2.573a.25.25 0 00-.073.177v7.5a.25.25 0 00.25.25h12.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-3a.75.75 0 110-1.5h3A1.75 1.75 0 0116 2.75v7.5A1.75 1.75 0 0114.25 12h-3.727c.099 1.041.52 1.872 1.292 2.757A.75.75 0 0111.25 16h-6.5a.75.75 0 01-.565-1.243c.772-.885 1.192-1.716 1.292-2.757H1.75A1.75 1.75 0 010 10.25v-7.5A1.75 1.75 0 011.75 1h3a.75.75 0 010 1.5h-3a.25.25 0 00-.177.073zM6.982 12a5.72 5.72 0 01-.765 2.5h3.566a5.72 5.72 0 01-.765-2.5H6.982z"></path>
-                                </svg>
-                                <span>Set up in desktop</span>
-                            </button>
-                            <p class="text-gray-300 text-md">or</p>
-                            <div class="border border-gray-700 bg-dark-primary text-gray-300 font-medium rounded-md text-[12px]">
-                                <button :class="['text-gray-500 px-2 py-1', ssh ? 'bg-white/5' : 'bg-transparent' ]" @click="ssh = false">HTTPS</button>
-                                <button :class="['text-gray-500 px-2 py-1', ssh ? 'bg-transparent' : 'bg-white/5' ]" @click="ssh = true">SSH</button>
-                            </div>
+                    <div class="url-bar flex justify-between my-2 gap-3">
+                        <button class="px-2 py-1 border border-gray-700 bg-dark-primary/70 text-gray-300 font-medium rounded-md text-[12px] flex justify-center items-center gap-2">
+                            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
+                                <path d="M4.927 5.427l2.896 2.896a.25.25 0 00.354 0l2.896-2.896A.25.25 0 0010.896 5H8.75V.75a.75.75 0 10-1.5 0V5H5.104a.25.25 0 00-.177.427z"></path><path d="M1.573 2.573a.25.25 0 00-.073.177v7.5a.25.25 0 00.25.25h12.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-3a.75.75 0 110-1.5h3A1.75 1.75 0 0116 2.75v7.5A1.75 1.75 0 0114.25 12h-3.727c.099 1.041.52 1.872 1.292 2.757A.75.75 0 0111.25 16h-6.5a.75.75 0 01-.565-1.243c.772-.885 1.192-1.716 1.292-2.757H1.75A1.75 1.75 0 010 10.25v-7.5A1.75 1.75 0 011.75 1h3a.75.75 0 010 1.5h-3a.25.25 0 00-.177.073zM6.982 12a5.72 5.72 0 01-.765 2.5h3.566a5.72 5.72 0 01-.765-2.5H6.982z"></path>
+                            </svg>
+                            <span class="whitespace-nowrap">Set up in desktop</span>
+                        </button>
+                        <p class="text-gray-300 text-md">or</p>
+                        <div class="flex border border-gray-700 bg-dark-primary text-gray-300 font-medium rounded-md text-[12px]">
+                            <button :class="['text-gray-500 px-2 py-1', ssh ? 'bg-white/5' : 'bg-transparent' ]" @click="ssh = false">HTTPS</button>
+                            <button :class="['text-gray-500 px-2 py-1', ssh ? 'bg-transparent' : 'bg-white/5' ]" @click="ssh = true">SSH</button>
                         </div>
-                        <div class="right md:w-8/12 w-full">
-                            <div class="border border-gray-700 bg-dark-primary/70 text-gray-300 flex font-medium rounded-md text-[12px] w-full">
-                                <p class="text-gray-200 px-2 py-1 text-left bg-dark-primary/70 w-[calc(100%-40px)]">{{ !ssh ? repo.clone_url : repo.ssh_url }}</p>
-                                <button class="text-gray-500 px-2 py-1 bg-white/5 w-10 text-center">
-                                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400 mx-auto">
-                                        <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
-                                    </svg>
-                                </button>
-                            </div>
+                        <div class="border border-gray-700 bg-dark-primary/70 text-gray-300 flex font-medium rounded-md text-[12px] w-full">
+                            <p class="text-gray-200 px-2 py-1 text-left bg-dark-primary/70 w-[calc(100%-40px)]">{{ !ssh ? repo.clone_url : repo.ssh_url }}</p>
+                            <button class="text-gray-500 px-2 py-1 bg-white/5 w-10 text-center">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400 mx-auto">
+                                    <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <p class="text-[14px] text-gray-300">Get started by creating a new file or uploading an existing file. We recommend every repository include a README, LICENSE, and .gitignore.</p>
+                    <p class="text-[14px] text-gray-300">Get started by <a href="#" class="text-blue-400 hover:underline underline-offset-2"> creating a new file</a> or <a href="#" class="text-blue-400 hover:underline underline-offset-2"> uploading an existing file</a>. We recommend every repository include a <a href="#" class="text-blue-400 hover:underline underline-offset-2"> README</a>, <a href="#" class="text-blue-400 hover:underline underline-offset-2">LICENSE</a>, and <a href="#" class="text-blue-400 hover:underline underline-offset-2">.gitignore</a>.</p>
                 </div>
-                <div class="main border-b border-l border-r border-gray-700 p-4 py-6 rounded">
+                <!-- starting commands -->
+                <div class="main border-b border-l border-r border-gray-700 p-4 py-6 rounded rounded-t-none rounded-b-none">
                     <h2 class="text-lg text-gray-300 font-semibold">…or create a new repository on the command line</h2>
-                    <pre class="main-top bg-white/5 my-1 rounded text-gray-300 text-sm p-3 py-1 flex flex-col justify-start">
+                    <pre class="main-top bg-white/5 my-1 rounded text-gray-300 text-sm p-3 py-2 flex flex-col justify-start">
                        <span>echo "# test" >> README.md</span>
                        <span>git init</span>
                        <span>git add README.md</span>
@@ -161,6 +159,32 @@
                        <span>git remote add origin {{ !ssh ? repo.clone_url : repo.ssh_url }}</span>
                        <span>git push -u origin main</span>
                     </pre>
+                </div>
+                <!-- existing repo commands -->
+                <div class="main border-b border-l border-r border-gray-700 p-4 py-6 rounded rounded-t-none rounded-b-none">
+                    <h2 class="text-lg text-gray-300 font-semibold">…or push an existing repository from the command line</h2>
+                    <pre class="main-top bg-white/5 my-1 rounded text-gray-300 text-sm p-3 py-2 flex flex-col justify-start">
+                        <span>git remote add origin {{ !ssh ? repo.clone_url : repo.ssh_url }}</span>
+                        <span>git branch -M main</span>
+                        <span>git push -u origin main</span>
+                    </pre>
+                </div>
+                <!-- import repo -->
+                <div class="main border-b border-l border-r border-gray-700 p-4 py-6 rounded rounded-t-none">
+                    <h2 class="text-lg text-gray-300 font-semibold">…or import code from another repository</h2>
+                    <p class="text-gray-300 text-sm mb-3">You can initialize this repository with code from a Subversion, Mercurial, or TFS project.</p>
+                    <button class="px-2 py-1 border border-gray-700 bg-white/5 text-gray-300 font-medium rounded-md text-[12px] flex justify-center items-center gap-2">
+                        Import code
+                    </button>
+                </div>
+
+                <div class="text-center text-gray-400 mt-5 text-sm flex justify-center items-center gap-2">
+                    <span>
+                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-500">
+                            <path fill-rule="evenodd" d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 01-1.484.211c-.04-.282-.163-.547-.37-.847a8.695 8.695 0 00-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.75.75 0 01-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75zM6 15.25a.75.75 0 01.75-.75h2.5a.75.75 0 010 1.5h-2.5a.75.75 0 01-.75-.75zM5.75 12a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5z"></path>
+                        </svg>
+                    </span>
+                    <p class="-mt-1"><span class="text-white font-medium"> ProTip!</span> Use the URL for this page when adding GitHub as a remote.</p>
                 </div>
             </div>
         </div>

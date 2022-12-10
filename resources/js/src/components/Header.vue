@@ -36,16 +36,17 @@
                     </a>
                     <div class="profile relative">
                         <button class="flex items-center gap-x-1" @click="profile = !profile">
-                            <img :src="loggedInUser.avatar_url" class="w-6 h-6 rounded-full" alt="user">
+                            <img :src="loggedInUser.avatar_url" class="w-6 h-6 rounded-full" alt="user" v-if="loggedInUser.avatar_url">
+                            <img src="/images/default-user.png" class="w-6 h-6 rounded-full" alt="user" v-else>
                             <span class="dropdown-caret"></span>
                         </button>
-                        <div class="profile-menu absolute right-0 top-12 min-w-[180px] w-full bg-dark-primary border border-gray-700 rounded z-30" v-if="profile">
+                        <div class="profile-menu absolute right-0 top-12 min-w-[180px] w-full bg-dark-primary border border-gray-700 rounded z-30" v-if="profile" @click="profile = !profile">
                             <div class="top-menu text-gray-300 text-sm py-3 px-4">
                                 <h5>Signed in as <span class="font-semibold">{{ loggedInUser.login }}</span></h5>
                             </div>
                             <div class="bottom  border-t border-gray-700"></div>
                             <div class="menu-items py-2">
-                                <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Profile</a>
+                                <router-link :to="{name: 'Profile', params: { username: loggedInUser.login }}" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Profile</router-link>
                                 <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Projects</a>
                                 <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Repositories</a>
                                 <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">Account</a>
@@ -91,7 +92,7 @@ export default {
             this.store.getUser()
             setTimeout(() => {
                 this.loggedInUser = this.store.gitHubUser
-            }, 500)
+            }, 800)
         }
     },
 }

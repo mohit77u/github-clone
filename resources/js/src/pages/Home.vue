@@ -38,7 +38,7 @@
                     <!-- main grid create readme -->
                     <div class="grid md:grid-cols-2 grid-cols-1 gap-5">
                         <div class="left create">
-                            <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4">
+                            <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4 h-full">
                                 <h4 class="text-gray-300 font-medium mb-3 text-[16px]">Start a new repository</h4>
                                 <p class="text-gray-400 text-[14px] mb-3 leading-6">A repository contains all of your project's files, revision history, and collaborator discussion.</p>
 
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="right">
-                            <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4 pb-8">
+                            <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4 pb-8 h-full">
                                 <h4 class="text-gray-300 font-medium mb-3 text-[16px]">Introduce yourself with a profile README</h4>
                                 <p class="text-gray-400 text-[14px] mb-3 leading-6">Share information about yourself by creating a profile README, which appears at the top of your profile page.</p>
 
@@ -181,7 +181,7 @@
                     <!-- main grid info readme -->
                     <div class="grid md:grid-cols-2 grid-cols-1 gap-5">
                         <div class="left my-3 border border-gray-800 bg-white/5 rounded relative overflow-hidden">
-                            <a href="https://www.youtube.com/watch?v=pBy1zgt0XPc" target="blank"><img src="/images/video-thumbnail.jpeg" alt="video" class="w-full max-h-[220px] object-cover transition-all duration-300 hover:scale-105"></a>
+                            <a href="https://www.youtube.com/watch?v=pBy1zgt0XPc" target="blank"><img src="/images/video-thumbnail.jpeg" alt="video" class="w-full max-h-[240px] h-full object-cover transition-all duration-300 hover:scale-105"></a>
                             <a href="https://www.youtube.com/watch?v=pBy1zgt0XPc" target="blank" class="start-button absolute left-4 bottom-2 w-auto px-3 py-1.5 text-white text-[14px] bg-blue-500 font-semibold">What is GitHub?</a>
                             <a href="https://www.youtube.com/watch?v=pBy1zgt0XPc" target="blank" class="icon absolute top-[100px] left-1/2">
                                 <svg aria-hidden="true" height="30" viewBox="0 0 24 24" version="1.1" width="30" data-view-component="true" class="bg-blue-500 fill-gray-100 rounded-full">
@@ -189,7 +189,7 @@
                                 </svg>
                             </a>
                         </div>
-                        <div class="right my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4">
+                        <div class="right my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4 pb-4">
                             <div class="content">
                                 <svg aria-hidden="true" height="24" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true" class="fill-gray-500">
                                     <path fill-rule="evenodd" d="M4.75 3a1.75 1.75 0 100 3.5 1.75 1.75 0 000-3.5zM1.5 4.75a3.25 3.25 0 116.5 0 3.25 3.25 0 01-6.5 0zM4.75 17.5a1.75 1.75 0 100 3.5 1.75 1.75 0 000-3.5zM1.5 19.25a3.25 3.25 0 116.5 0 3.25 3.25 0 01-6.5 0zm17.75-1.75a1.75 1.75 0 100 3.5 1.75 1.75 0 000-3.5zM16 19.25a3.25 3.25 0 116.5 0 3.25 3.25 0 01-6.5 0z"></path><path fill-rule="evenodd" d="M4.75 7.25A.75.75 0 015.5 8v8A.75.75 0 014 16V8a.75.75 0 01.75-.75zm8.655-5.53a.75.75 0 010 1.06L12.185 4h4.065A3.75 3.75 0 0120 7.75v8.75a.75.75 0 01-1.5 0V7.75a2.25 2.25 0 00-2.25-2.25h-4.064l1.22 1.22a.75.75 0 01-1.061 1.06l-2.5-2.5a.75.75 0 010-1.06l2.5-2.5a.75.75 0 011.06 0z"></path>
@@ -203,8 +203,8 @@
                 </div>
                 <!-- right side main content -->
                 <div class="lg:w-4/12 md:w-6/12 w-full md:pl-6 pl-0">
-                    <div class="right my-3 border border-[#30363d] bg-white/5 rounded pb-4 relative max-h-[200px]">
-                        <img src="/images/bg.jpg" alt="bg" class="w-full object-cover max-h-[200px]">
+                    <div class="right my-3 border border-[#30363d] bg-white/5 rounded pb-4 relative max-h-[250px]">
+                        <img src="/images/bg.jpg" alt="bg" class="w-full object-cover max-h-[250px]">
                         <div class="content absolute left-0 top-0 px-4 py-2">
                             <h4 class="text-gray-300 font-medium mb-2 mt-2 text-[16px]">Start coding instantly with GitHub Codespaces</h4>
                             <p class="text-gray-400 text-[13px] mt-4 mb-5 w-8/12">Spin up fully configured dev environments on powerful VMs that start in seconds. Get up to 60 hours a month of free time.</p>

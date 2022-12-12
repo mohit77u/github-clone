@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+@section('meta_title', 'Login Page | GitHub')
 
 @section('content')
 <div class="auth py-20 flex items-center justify-center backdrop-blur-[20px]">

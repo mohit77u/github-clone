@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+@section('meta_title', 'Sign Up Page | GitHub')
 
 @section('content')
 

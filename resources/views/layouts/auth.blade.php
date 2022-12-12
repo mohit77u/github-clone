@@ -5,7 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
 
-        <title>Github Clone</title>
+        <!-- title -->
+        <title>@yield('meta_title')</title>
+
+        <!-- css -->
         @vite('resources/sass/app.scss')
 
     </head>
@@ -17,6 +20,7 @@
         <!-- toast -->
         @include('toast.toast')
 
+        <!-- scripts -->
         @vite('resources/js/app.js')
     </body>
 </html>

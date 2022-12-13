@@ -99,7 +99,6 @@ class AuthController extends Controller
             'password'              => Hash::make('password'),
             'github_id'             => $user->getId(),
             'auth_type'             => 'github',
-            'access_token'          => $user->token,
         ]);
 
         // make user to auth user
@@ -112,11 +111,6 @@ class AuthController extends Controller
     // forgot password
     public function logout()
     {
-        $user = Auth::user();
-
-        $user->access_token = null;
-        $user->save();
-
         Auth::logout();
 
         return redirect()->route('login');

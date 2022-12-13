@@ -7,10 +7,10 @@
         <SideBar :refresh="refresh" />
 
         <!-- main -->
-        <div class="main-right-content bg-dark-main flex-auto px-8 py-5 md:w-[calc(100%-350px)] w-full">
+        <div class="main-right-content bg-dark-main flex-auto px-8 py-5 md:w-[calc(100%-250px)] lg:w-[calc(100%-350px)] w-full">
             <div class="flex flex-wrap">
                 <!-- left side main content -->
-                <div class="lg:w-8/12 md:w-6/12 w-full md:pr-6 pr-0">
+                <div class="xl:w-8/12 w-full xl:pr-6 pr-0">
 
                     <!-- top heading main -->
                     <div class="top">
@@ -36,7 +36,7 @@
                     </div>
 
                     <!-- main grid create readme -->
-                    <div class="grid md:grid-cols-2 grid-cols-1 gap-5">
+                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-5">
                         <div class="left create">
                             <div class="create-main my-3 border border-gray-800 bg-white/5 rounded px-4 pt-4">
                                 <h4 class="text-gray-300 font-medium mb-3 text-[16px]">Start a new repository</h4>
@@ -45,7 +45,7 @@
                                 <!-- form top -->
                                 <form @submit.prevent="CreateRepo">
                                     <div class="form-top flex items-center gap-x-1">
-                                        <p class="text-gray-300 text-sm">{{githubUser.login}}/</p>
+                                        <p class="text-gray-300 text-sm">{{githubUser.login ? githubUser.login : user.username}}/</p>
                                         <input type="text" placeholder="name your new repository..." class="border border-gray-700 focus:border-blue-400 focus:outline focus:ring-blue-400 px-3 py-1 text-sm rounded w-full bg-dark-main text-gray-300" v-model="repo.name">
                                     </div>
 
@@ -76,7 +76,7 @@
                                         </label>
                                     </div>
                                     <div class="form-group my-5">
-                                        <button type="submit" class="bg-green-primary px-3 py-1.5 text-white font-semibold rounded text-xs">Create new repository</button>
+                                        <button type="submit" class="bg-green-primary px-3 py-1.5 text-white font-semibold rounded text-xs">Create a new repository</button>
                                     </div>
                                 </form>
                             </div>
@@ -89,14 +89,14 @@
                                 <div class="readme border border-gray-800 rounded-md mt-3">
                                     <!-- form top -->
                                     <div class="form-top flex items-center justify-between px-3 py-2">
-                                        <p class="text-gray-300 text-sm">{{githubUser.login}} / README.md</p>
+                                        <p class="text-gray-300 text-sm">{{githubUser.login ? githubUser.login : user.username}} / README.md</p>
                                         <button class="bg-green-primary px-3 py-1.5 text-white font-semibold rounded text-xs">Create</button>
                                     </div>
                                     <div class="readme-content px-3 bg-white/5">
                                         <article class="py-2">
                                             <div class="flex items-center">
                                                 <span class="blob-num pinned-gist-blob-num text-gray-400 text-[13px]">1</span>
-                                                <pre class="lh-condensed-ultra overflow-hidden text-gray-300 text-[13px]"> - 👋 Hi, I’m @{{githubUser.login}}</pre>
+                                                <pre class="lh-condensed-ultra overflow-hidden text-gray-300 text-[13px]"> - 👋 Hi, I’m @{{githubUser.login ? githubUser.login : user.username}}</pre>
                                             </div>
                                             <div class="flex items-center">
                                                 <span class="blob-num pinned-gist-blob-num text-gray-400 text-[13px]">2</span>
@@ -144,7 +144,7 @@
                     </div>
 
                     <!-- main grid info readme -->
-                    <div class="grid md:grid-cols-2 grid-cols-1 gap-5">
+                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-5">
                         <div class="left my-3 border border-gray-800 bg-white/5 rounded px-4 py-4">
                             <h4 class="text-gray-300 font-medium mb-3 text-[16px]">Simplify your development workflow with a GUI</h4>
                             <div class="content flex items-start">
@@ -179,7 +179,7 @@
                     </div>
 
                     <!-- main grid info readme -->
-                    <div class="grid md:grid-cols-2 grid-cols-1 gap-5">
+                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-5">
                         <div class="left my-3 border border-gray-800 bg-white/5 rounded relative overflow-hidden">
                             <a href="https://www.youtube.com/watch?v=pBy1zgt0XPc" target="blank"><img src="/images/video-thumbnail.jpeg" alt="video" class="w-full max-h-[220px] object-cover transition-all duration-300 hover:scale-105"></a>
                             <a href="https://www.youtube.com/watch?v=pBy1zgt0XPc" target="blank" class="start-button absolute left-4 bottom-2 w-auto px-3 py-1.5 text-white text-[14px] bg-blue-500 font-semibold">What is GitHub?</a>
@@ -202,7 +202,7 @@
                     </div>
                 </div>
                 <!-- right side main content -->
-                <div class="lg:w-4/12 md:w-6/12 w-full md:pl-6 pl-0">
+                <div class="xl:w-4/12 w-full xl:pl-6 pl-0">
                     <div class="right my-3 border border-[#30363d] bg-white/5 rounded pb-4 relative max-h-[200px]">
                         <img src="/images/bg.jpg" alt="bg" class="w-full object-cover max-h-[200px]">
                         <div class="content absolute left-0 top-0 px-4 py-2">
@@ -226,12 +226,12 @@
                 <p class="text-gray-400 text-sm">Connect your GitHub account now.</p>
             </div>
             <div class="popup-main px-5">
-                <p class="text-gray-300 text-sm pt-4">Enter your GitHub username to connect with your account, and you can perform any actions that will reflect to your GitHub account.</p>
-                <form @submit.prevent="updateUserName" class="py-4">
+                <p class="text-gray-300 text-sm pt-4">Enter your GitHub personal access token to connect with your account, and you can perform any actions that will reflect to your GitHub account.</p>
+                <form @submit.prevent="updateToken" class="py-4">
                     <div class="form-group">
-                        <label class="block mb-1 text-gray-300 text-sm">Please type your GitHub username</label>
-                        <input type="text" placeholder="" class="my-2 border border-gray-700 focus:border-blue-400 focus:outline focus:ring-blue-400 px-3 py-1 text-sm rounded w-full bg-dark-main text-gray-300" v-model="user.username">
-                        <p v-if="error.username" class="text-red-500 text-xs mb-2">{{ error.username[0]}}</p>
+                        <label class="block mb-1 text-gray-300 text-sm">Please type your personal access token</label>
+                        <input type="text" placeholder="" class="my-2 border border-gray-700 focus:border-blue-400 focus:outline focus:ring-blue-400 px-3 py-1 text-sm rounded w-full bg-dark-main text-gray-300" v-model="user.token">
+                        <p v-if="error.token" class="text-red-500 text-xs mb-2">{{ error.token[0]}}</p>
                         <button type="submit" class="bg-transparent hover:bg-green-primary border border-gray-700 w-full px-3 py-1.5 text-sm rounded-md text-green-primary hover:text-white flex items-center justify-center gap-x-1 font-medium">Connect GitHub</button>
                     </div>
                 </form>
@@ -240,7 +240,7 @@
     </div>
 
     <!-- success toast -->
-    <div id="toast-success" class="flex fixed right-10 bottom-5 z-50 items-center p-4 mb-4 w-full max-w-xs text-gray-200 rounded bg-[#0d1117]  border border-gray-700 shadow  animate__animated animate__fadeInRight" role="alert" v-if="toast">
+    <div id="toast-success" class="flex fixed sm:right-10 right-2 bottom-5 z-50 items-center sm:px-4 sm:py-4 py-3 px-2 mb-4 w-full max-w-[280px] sm:max-w-xs text-gray-200 rounded bg-[#0d1117]  border border-gray-700 shadow  animate__animated animate__fadeInRight" role="alert" v-if="toast">
         <div class="inline-flex justify-center items-center w-6 h-6 bg-lime-500 rounded-full text-white">
             <svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -291,26 +291,42 @@ export default {
         setTimeout(()=> {
             this.getGithubUser();
         }, 500)
+        setTimeout(()=> {
+            this.getUser();
+        }, 500)
     },
     methods: {
+        getUser(){
+            this.user = this.store.user
+            if(!this.user.access_token){
+                this.connect = true
+            }
+        },
         // get github user
         getGithubUser(){
             this.githubUser = this.store.gitHubUser
         },
         // update username
-        updateUserName() {
+        updateToken() {
             let data = {
                 id: this.user.id,
-                username: this.user.username
+                token: this.user.token
             }
-            axios.post('/api/update/username', data)
+            axios.post('/api/update/token', data)
                 .then((res) => {
-                    this.connect = false
-                    this.getGithubUser(res.data.user.username);
                     this.toast = res.data.message
+                    // window.location.reload();
+                    this.store.getUser()
+                    this.connect = false
+                    setTimeout(()=> {
+                        this.toast = false
+                    }, 4000)
                 }).catch((err) => {
-                    console.log(err)
                     this.error = err.response.data.errors
+                    this.toast = 'Error on updating token.'
+                    setTimeout(()=> {
+                        this.toast = false
+                    }, 4000)
                 })
         },
         // create repo
@@ -323,19 +339,29 @@ export default {
             } else {
                 data.private = false
             }
+            const user = this.store.user
+
             const octokit = new Octokit({
-                auth: this.store.user.access_token
+                auth: user.access_token,
             })
 
-            // call function to create repo
             await octokit.request('POST /user/repos', {
                 name: data.name,
+                private: data.private,
             })
             .then((res) => {
                 console.log(res)
+                this.toast = 'Repository created successfully.'
                 this.refresh = !this.refresh
+                setTimeout(()=> {
+                    this.toast = false
+                }, 4000)
             }).catch((err) => {
                 console.log(err)
+                this.toast = 'Error on creating repository.'
+                setTimeout(()=> {
+                    this.toast = false
+                }, 4000)
             })
         }
     },

@@ -3,10 +3,6 @@ import axios from 'axios'
 // define octakit
 import { Octokit } from "@octokit/core";
 
-const octokit = new Octokit({
-  auth: import.meta.env.VITE_GITHUB_ACCESS_TOKEN
-})
-
 export const usersStore = defineStore('gitUser', {
     // arrow function recommended for full type inference
     state: () => {

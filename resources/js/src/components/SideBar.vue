@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar md:w-[350px] w-full md:sticky static md:left-0 md:top-0 md:z-40 md:min-h-[50vh] md:max-h-[100vh] bg-[#0d1117] border-r border-gray-700 py-5 px-8 overflow-y-auto">
+    <div class="sidebar md:w-[250px] lg:w-[350px] hidden md:block w-full md:sticky static md:left-0 md:top-0 md:z-40 md:min-h-[50vh] md:max-h-[100vh] bg-[#0d1117] border-r border-gray-700 py-5 lg:px-8 px-3 overflow-y-auto">
         <div class="top flex flex-wrap items-center justify-between">
             <h3 class="text-md font-semibold text-gray-300">Top Repository</h3>
             <button class="bg-green-primary px-3 py-1.5 text-sm rounded-md text-white flex items-center justify-center gap-x-1">
@@ -61,7 +61,10 @@ export default {
     },
     watch: {
         refresh(){
-            this.getRepository();
+            console.log('refresh')
+            setTimeout(()=> {
+                this.getRepository();
+            }, 300)
         }
     },
     mounted(){

@@ -18,23 +18,23 @@ class UserController extends Controller
         ]);
     }
 
-    public function updateUsername(Request $request)
+    public function updateToken(Request $request)
     {
         $request->validate([
-            'username'  => 'required',
+            'token'     => 'required',
             'id'        => 'required',
         ]);
 
         $user = User::find($request->id);
         // dd($user);
-        $username = $request->username;
+        $token = $request->token;
 
         $user->update([
-            'username' => $username,
+            'access_token' => $token,
         ]);
 
         return response([
-            'message'   => 'Username updated successfully.',
+            'message'   => 'Token updated successfully.',
             'user'      => $user,
         ]);
     }

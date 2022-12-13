@@ -23,6 +23,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('github_id')->nullable();
             $table->string('auth_type')->nullable();
+            $table->text('access_token')->nullable();
             $table->timestamps();
         });
     }

@@ -1,4 +1,3 @@
-window.global ||= window;
 import './bootstrap';
 
 import { createApp } from 'vue';

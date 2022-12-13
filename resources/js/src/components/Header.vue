@@ -49,8 +49,8 @@
                                     <h5>Signed in as <span class="font-semibold">{{ loggedInUser.login }}</span></h5>
                                 </div>
                                 <div class="bottom  border-t border-gray-700"></div>
-                                <div class="menu-items py-2">
-                                    <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Profile</a>
+                                <div class="menu-items py-2" @click="profile = !profile">
+                                    <router-link :to="{name: 'Profile', params: { username: loggedInUser.login }}" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Profile</router-link>
                                     <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Projects</a>
                                     <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">My Repositories</a>
                                     <a href="#" class="text-gray-400 hover:bg-blue-500 hover:text-white py-1.5 text-sm block px-4 whitespace-nowrap">Account</a>
@@ -131,7 +131,7 @@ export default {
             this.store.getUser()
             setTimeout(() => {
                 this.loggedInUser = this.store.gitHubUser
-            }, 500)
+            }, 800)
         }
     },
 }

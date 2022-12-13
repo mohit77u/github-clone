@@ -44,3 +44,27 @@ html {
     vertical-align: middle;
     width: 0;
 }
+.loading {
+    height: 0;
+    width: 0;
+    padding: 15px;
+    border: 3px solid rgb(62, 62, 62);
+    border-right-color: #ccc;
+    border-radius: 22px;
+    animation: rotate 1.2s infinite linear;
+    position: absolute;
+    left: 47%;
+    top: 20%;
+  }
+  
+  @keyframes rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  .bg-content{
+    background: url('../images/bg.jpg');
+    background-size: cover;
+    background-position: center center;;
+  }

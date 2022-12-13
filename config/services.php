@@ -32,9 +32,9 @@ return [
     ],
 
     'github' => [
-        'client_id'     => env('VITE_GITHUB_CLIENT_ID'),
-        'client_secret' => env('VITE_GITHUB_CLIENT_SECRET'),
-        'redirect'      => env('VITE_GITHUB_CLIENT_CALLBACK'),
+        'client_id'     => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect'      => env('GITHUB_CALLBACK_URL'),
     ],
 
 ];

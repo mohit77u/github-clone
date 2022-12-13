@@ -288,16 +288,16 @@ export default {
     },
     mounted() {
         setTimeout(()=> {
-            this.getGithubUser();
-        }, 500)
-        setTimeout(()=> {
             this.getUser();
+            if(this.store.user.access_token != null || this.store.user.access_token != '' || this.user.access_token != undefined) {
+                this.getGithubUser();
+            }
         }, 500)
     },
     methods: {
         getUser(){
             this.user = this.store.user
-            if(!this.user.access_token){
+            if(this.user.access_token == null || this.user.access_token == '' || this.user.access_token == undefined){
                 this.connect = true
             }
         },
@@ -307,8 +307,9 @@ export default {
         },
         // update username
         updateToken() {
+            // console.log(this.store.user.id)
             let data = {
-                id: this.user.id,
+                id: this.store.user.id,
                 token: this.user.token
             }
             axios.post('/api/update/token', data)

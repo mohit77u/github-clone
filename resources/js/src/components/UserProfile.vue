@@ -2,8 +2,8 @@
     <div class="relative">
         <div class="loading mt-24" v-if="profileLoading"></div>
         <div class="profile" v-else>
-            <img :src="loggedInUser.avatar_url" :alt="loggedInUser.login" class="rounded-full max-w-[90%]">
-            <div class="profile-details" v-if="!profileEdit">
+            <img :src="loggedInUser.avatar_url" :alt="loggedInUser.login" class="rounded-full max-w-[90%] md:-mt-8 mt-5">
+            <div class="profile-details" v-if="!profileEdit && loggedInUser.login">
                 <h2 class="text-gray-300 text-2xl mt-5 font-semibold" v-if="loggedInUser.name">{{ loggedInUser.name }}</h2>
                 <p class="text-gray-400 text-lg mb-1 font-light">{{ loggedInUser.login }}</p>
                 <p class="bio text-gray-300 text-md mt-3 mb-1" v-if="loggedInUser.bio">{{ loggedInUser.bio }}</p>

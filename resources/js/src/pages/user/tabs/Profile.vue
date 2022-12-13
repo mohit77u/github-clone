@@ -14,8 +14,8 @@
 
 <script>
     import { Octokit } from "@octokit/core";
-    import { usersStore } from '../../stores/usersStore'
-    import  UserProfile  from '../../components/UserProfile.vue'
+    import { usersStore } from '../../../stores/usersStore'
+    import  UserProfile  from '../../../components/UserProfile.vue'
     export default {
         name: 'Profile',
         components:{

@@ -3,8 +3,8 @@
         <div class="profile-details py-5">
             <div class="top pt-4 border-b border-gray-800">
                 <div class="flex flex-wrap">
-                    <div class="left md:w-8/12 w-full ml-auto">
-                        <ul class="flex items-center gap-1 px-3">
+                    <div class="left lg:w-8/12 w-full ml-auto flex justify-between items-center relative">
+                        <ul class="flex items-center gap-1 px-3" id="menu1">
                             <li :class="[tab == 'profile' ? 'border-orange-500' : 'border-transparent', 'pb-1 border-b-2']">
                                 <router-link :to="{name: 'Profile', params: {username: $route.params.username}}" class="px-3 py-1.5 hover:bg-white/10 text-gray-300 font-medium rounded-md text-[14px] flex justify-center items-center gap-2">
                                     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
@@ -18,7 +18,7 @@
                                     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
                                         <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
                                     </svg>
-                                    <span>Repositories <span class="px-2 py-1 text-xs text-center rounded-full bg-white/20 ml-1">{{repositories.length}}</span></span>
+                                    <span class="flex items-center">Repositories <span class="px-2 py-1 text-xs text-center rounded-full bg-white/20 ml-1">{{repositories.length}}</span></span>
                                 </router-link>
                             </li>
                             <li :class="[tab == 'projects' ? 'border-orange-500' : 'border-transparent', 'pb-1 border-b-2']">
@@ -46,15 +46,25 @@
                                 </router-link>
                             </li>
                         </ul>
+                        <div class="block xl:hidden menu-icon-div pr-4">
+                            <button class="ml-3" @click="mobileRepoMenu = !mobileRepoMenu">
+                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
+                                    <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+                                </svg>
+                            </button>
+                            <div :class="[mobileRepoMenu ? 'block' : 'hidden', 'menu absolute top-10 right-0 bg-dark-primary rounded z-20 py-1.5 px-2 shadow-lg']">
+                                <ul id="menu2"></ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="2xl:w-8/12 lg:w-10/12 md:w-9/12 w-full mx-auto flex flex-wrap">
-                <div class="left md:w-3/12 w-full">
+                <div class="left lg:w-3/12 w-full">
                     <!-- user profile -->
                     <UserProfile></UserProfile>
                 </div>
-                <div class="left md:w-9/12 w-full">
+                <div class="left lg:w-9/12 w-full">
                     <router-view></router-view>
                 </div>
             </div>
@@ -76,6 +86,7 @@
                 loggedInUser: '',
                 repositories: '',
                 tab: '',
+                mobileRepoMenu: false
             }
         },
         setup(){

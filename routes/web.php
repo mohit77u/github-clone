@@ -21,8 +21,8 @@ use App\Http\Controllers\Api\UserController;
 // });
 
 Route::controller(AuthController::class)->group(function (){
-    Route::get('/login', 'LoginPage')->middleware('guest')->name('login');
-    Route::get('/signup', 'SignupPage')->middleware('guest')->name('signup');
+    Route::get('/login', 'LoginPage')->middleware(['guest', 'prevent-back-history'])->name('login');
+    Route::get('/signup', 'SignupPage')->middleware(['guest', 'prevent-back-history'])->name('signup');
     Route::post('register', 'register')->name('register.post');
     Route::post('login', 'login')->name('login.post');
     Route::get('logout', 'logout');
@@ -40,4 +40,4 @@ Route::get('{any}', function () {
     $user = Auth::user();
     return view('vue-app', compact('user'));
 
-})->where('any', '.*')->middleware('auth')->name('main-app-route');
+})->where('any', '.*')->middleware(['auth', 'prevent-back-history'])->name('main-app-route');

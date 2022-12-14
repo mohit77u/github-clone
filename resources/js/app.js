@@ -40,3 +40,76 @@ const pinia = createPinia()
 app.use(router)
 .use(pinia)
 .mount('#app');
+
+
+$(function(){
+    // function to remove or add elements from menu
+    function addOrRemoveElement() {
+        // get window width
+        var windowWidth = $(window).width();
+
+        // get li element width
+        var elementWidth = $('#menu1 li').width();
+        var menu1array = [];
+        var menu2array = [];
+        var allArray   = [];
+
+        // push all menu1 li to all array
+        $('#menu1 li').each((index, elem) => {
+            allArray.push($(elem));
+        })
+        // push all menu2 li to all array
+        $('#menu2 li').each((index, elem) => {
+            allArray.push($(elem));
+        })
+        // populate to menu1 from all array
+        $(allArray).each((index, elem) => {
+            $(elem).appendTo('#menu1');
+        })
+
+        // add and remove the data to menu 2
+        $('#menu1 li').each(function(index, elem){
+            var myposition = $(elem).position();
+            var leftPosition = myposition.left + elementWidth * 4;
+            $(elem).find('a').removeClass('justify-center')
+            $(elem).find('a').addClass('justify-start')
+            var hide = (leftPosition > windowWidth);
+
+            // add or remove the data if width is greater than window width except last two elements
+            if(hide && index != 0 && index != 1 ){
+                menu2array.push($(elem));
+            } else {
+                menu1array.push($(elem));
+            }
+        });
+
+        // add to menu1
+        $(menu1array).each(function(index, elem){
+            $(elem).appendTo('#menu1');
+        });
+
+        // add to menu2
+        $(menu2array).each(function(index, elem){
+            $(elem).appendTo('#menu2');
+        });
+
+        // removeClass and addClass if not have any element in menu2array
+        if(menu2array.length == 0){
+            $('.menu-icon-div').addClass('hidden')
+        } else {
+            $('.menu-icon-div').removeClass('hidden')
+        }
+    } 
+
+    // on resize window call function
+    $(window).resize(function() {
+        addOrRemoveElement();
+    });
+
+    // on load page call function
+    $(document).ready(function() {
+        addOrRemoveElement();
+    });
+    
+
+})

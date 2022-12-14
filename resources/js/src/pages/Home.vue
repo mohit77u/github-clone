@@ -4,7 +4,7 @@
     <!-- main -->
     <section class="main flex flex-wrap bg-dark-main min-h-screen">
         <!-- sidebar -->
-        <SideBar :refresh="refresh" />
+        <SideBar :user="user" :refresh="refresh" />
 
         <!-- main -->
         <div class="main-right-content bg-dark-main flex-auto px-8 py-5 md:w-[calc(100%-250px)] lg:w-[calc(100%-350px)] w-full">
@@ -314,16 +314,16 @@ export default {
             }
             axios.post('/api/update/token', data)
                 .then((res) => {
-                    this.toast = res.data.message
-                    // window.location.reload();
+                    this.toast = 'GitHub account connected successfully.'
                     this.store.getUser()
+                    this.user = res.data.user
                     this.connect = false
                     setTimeout(()=> {
                         this.toast = false
                     }, 4000)
                 }).catch((err) => {
                     this.error = err.response.data.errors
-                    this.toast = 'Error on updating token.'
+                    this.toast = 'Error on connecting account.'
                     setTimeout(()=> {
                         this.toast = false
                     }, 4000)
@@ -352,6 +352,7 @@ export default {
             .then((res) => {
                 this.toast = 'Repository created successfully.'
                 this.refresh = !this.refresh
+                this.user = this.store.user
                 setTimeout(()=> {
                     this.toast = false
                 }, 4000)

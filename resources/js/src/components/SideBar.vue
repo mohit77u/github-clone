@@ -47,7 +47,7 @@ import { usersStore } from '../stores/usersStore'
 
 export default {
     name: 'Sidebar',
-    props: ['refresh'],
+    props: ['refresh', 'user'],
     setup() {
         const store = usersStore()
         return {
@@ -65,7 +65,7 @@ export default {
         }
     },
     watch: {
-        refresh(){
+        user: function(newVal, oldVal){
             this.getRepository();
         }
     },
@@ -77,19 +77,23 @@ export default {
     methods:{
         // getRepository of auth user from api
         async getRepository(){
-            const octokit = new Octokit({
-                auth: this.store.user.access_token
-            })
-            await octokit.request('GET /users/{username}/repos', {
-                username: this.store.user.username
-            })
-            .then((res) => {
-                this.repositories = res.data
+            if (this.user.access_token) {
+                const octokit = new Octokit({
+                    auth: this.store.user.access_token
+                })
+                await octokit.request('GET /users/{username}/repos', {
+                    username: this.store.user.username
+                })
+                .then((res) => {
+                    this.repositories = res.data
+                    this.repoLoading = false
+                }).catch((err) => {
+                    console.log(err)
+                    this.repoLoading = false
+                })
+            } else {
                 this.repoLoading = false
-            }).catch((err) => {
-                console.log(err)
-                this.repoLoading = false
-            })
+            }
         },
         // showMore repositories
         showMoreRepo(){

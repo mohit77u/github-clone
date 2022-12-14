@@ -19,6 +19,7 @@
         "@vitejs/plugin-vue": "^3.2.0",
         "animate.css": "^4.1.1",
         "isomorphic-fetch": "^3.0.0",
+        "jquery": "^3.6.2",
         "moment": "^2.29.4",
         "octokit": "^2.0.10",
         "pinia": "^2.0.27",

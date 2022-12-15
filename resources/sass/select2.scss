@@ -1,0 +1,21 @@
+.gitignore-template-select2{
+    .select2-container{
+        width: 100px !important;
+    }
+}
+
+.select2-dropdown{
+    min-width: 300px !important;
+    background: $darkMain !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: $darkMain !important;
+    color: rgb(191, 191, 191) !important;
+    padding: 5px 15px !important;
+    &:focus{
+        outline: none !important;
+    }
+}

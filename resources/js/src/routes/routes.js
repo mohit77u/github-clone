@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
 import RepositorySingle from '../pages/repository/RepoSingle.vue'
+import CreateNewRepo from '../pages/repository/New.vue'
 import ProfileLayout from '../pages/user/ProfileLayout.vue'
 import ProfileTabs from '../pages/user/ProfileTabs.vue'
 
@@ -18,6 +19,11 @@ const routes = [
     path: '/:username/:repository',
     name: 'RepositorySingle',
     component: RepositorySingle,
+  },
+  {
+    path: '/new',
+    name: 'CreateNewRepo',
+    component: CreateNewRepo,
   },
   {
     path: '/',

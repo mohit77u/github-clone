@@ -8,11 +8,14 @@ import { createApp } from 'vue';
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
  */
+ 
+
 
 const app = createApp({});
 
 import AppComponent from './src/AppComponent.vue';
 app.component('app-component', AppComponent);
+
 
 /**
  * The following block of code may be used to automatically register your

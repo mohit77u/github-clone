@@ -3,8 +3,8 @@
         <div class="profile-details py-5">
             <div class="top pt-4 border-b border-gray-800">
                 <div class="flex flex-wrap">
-                    <div class="left lg:w-8/12 w-full ml-auto flex justify-between items-center relative">
-                        <ul class="flex items-center gap-1 px-3" id="menu1">
+                    <div class="left lg:w-8/12 w-full ml-auto flex justify-between items-center relative pr-2 lg:pr-0">
+                        <ul class="flex items-center gap-1 px-3" id="menu1" @click="mobileRepoMenu = false">
                             <li :class="[tab == 'profile' ? 'border-orange-500' : 'border-transparent', 'pb-1 border-b-2']">
                                 <router-link :to="{name: 'Profile', params: {username: $route.params.username}}" class="px-3 py-1.5 hover:bg-white/10 text-gray-300 font-medium rounded-md text-[14px] flex justify-center items-center gap-2">
                                     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
@@ -46,20 +46,20 @@
                                 </router-link>
                             </li>
                         </ul>
-                        <div class="block xl:hidden menu-icon-div pr-4">
+                        <div class="block xl:hidden menu-icon-div pr-4 relative">
                             <button class="ml-3" @click="mobileRepoMenu = !mobileRepoMenu">
                                 <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400">
                                     <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
                                 </svg>
                             </button>
-                            <div :class="[mobileRepoMenu ? 'block' : 'hidden', 'menu absolute top-10 right-0 bg-dark-primary rounded z-20 py-1.5 px-2 shadow-lg']">
-                                <ul id="menu2"></ul>
+                            <div :class="[mobileRepoMenu ? 'block' : 'hidden', 'menu absolute top-11 right-0 bg-dark-primary border border-gray-700 rounded z-20 py-1.5 px-2 shadow-lg']">
+                                <ul id="menu2" @click="mobileRepoMenu = false"></ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="2xl:w-8/12 lg:w-10/12 md:w-9/12 w-full mx-auto flex flex-wrap">
+            <div class="2xl:w-8/12 xl:w-10/12 md:w-11/12 w-full mx-auto flex flex-wrap">
                 <div class="left lg:w-3/12 w-full">
                     <!-- user profile -->
                     <UserProfile></UserProfile>

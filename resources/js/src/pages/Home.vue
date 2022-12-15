@@ -49,7 +49,7 @@
                                         <input type="text" placeholder="name your new repository..." class="border border-gray-700 focus:border-blue-400 focus:outline focus:ring-blue-400 px-3 py-1 text-sm rounded w-full bg-dark-main text-gray-300" v-model="repo.name">
                                     </div>
 
-                                <!-- create form -->
+                                    <!-- create form -->
                                     <div class="form-group flex items-start gap-2 mb-3 mt-4">
                                         <input type="radio" id="public" name="type" value="public" class="mt-1.5 w-3.5 h-3.5 bg-gray-400 border border-gray-500" v-model="repo.type">
                                         <label for="public" class="flex items-start gap-x-2">

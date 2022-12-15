@@ -128,7 +128,7 @@
                             <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
                         </svg>
                     </button>
-                    <div :class="[mobileRepoMenu ? 'block' : 'hidden', 'menu absolute top-10 right-0 bg-dark-primary rounded z-20 py-1.5 px-2 shadow-lg']">
+                    <div :class="[mobileRepoMenu ? 'block' : 'hidden', 'menu absolute top-11 right-0 bg-dark-primary border border-gray-700 rounded z-20 py-1.5 px-2 shadow-lg']">
                         <ul id="menu2"></ul>
                     </div>
                 </div>

@@ -91,170 +91,6 @@
                         </svg>
                         <input type="text" placeholder="Location" class="border border-gray-700 focus:border-blue-400 focus:outline focus:ring-blue-400 px-3 py-1 text-sm rounded w-full bg-dark-main text-gray-300" v-model="loggedInUser.location">
                     </div>
-                    <!-- <div class="form-group mb-1.5 flex items-start gap-2">
-                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-500 mt-1">
-                            <path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.5 4.75a.75.75 0 00-1.5 0v3.5a.75.75 0 00.471.696l2.5 1a.75.75 0 00.557-1.392L8.5 7.742V4.75z"></path>
-                        </svg>
-                        <div class="w-full">
-                            <label class="flex items-center gap-2">
-                                <input type="checkbox" value="1" class="border border-gray-700 focus:border-blue-400 focus:outline-none focus:ring-0 px-3 py-1 text-sm rounded bg-dark-main text-gray-300">
-                                <span class="text-gray-500 font-medium">Display current local time</span>
-                            </label>
-                            <select class="border border-gray-700 focus:border-blue-400 focus:outline-none focus:ring-0 py-1 mt-1 text-xs rounded bg-dark-main text-gray-300 w-full" aria-label="Time zone" name="user[profile_local_time_zone_name]" id="user_profile_local_time_zone_name">
-                                <option value="International Date Line West">(GMT-12:00) International Date Line West</option>
-                                <option value="American Samoa">(GMT-11:00) American Samoa</option>
-                                <option value="Midway Island">(GMT-11:00) Midway Island</option>
-                                <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                <option value="Alaska">(GMT-09:00) Alaska</option>
-                                <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                                <option value="Tijuana">(GMT-08:00) Tijuana</option>
-                                <option value="Arizona">(GMT-07:00) Arizona</option>
-                                <option value="Mazatlan">(GMT-07:00) Mazatlan</option>
-                                <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                                <option value="Central America">(GMT-06:00) Central America</option>
-                                <option value="Central Time (US &amp; Canada)">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                                <option value="Chihuahua">(GMT-06:00) Chihuahua</option>
-                                <option value="Guadalajara">(GMT-06:00) Guadalajara</option>
-                                <option value="Mexico City">(GMT-06:00) Mexico City</option>
-                                <option value="Monterrey">(GMT-06:00) Monterrey</option>
-                                <option value="Saskatchewan">(GMT-06:00) Saskatchewan</option>
-                                <option value="Bogota">(GMT-05:00) Bogota</option>
-                                <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                                <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                                <option value="Lima">(GMT-05:00) Lima</option>
-                                <option value="Quito">(GMT-05:00) Quito</option>
-                                <option value="Atlantic Time (Canada)">(GMT-04:00) Atlantic Time (Canada)</option>
-                                <option value="Caracas">(GMT-04:00) Caracas</option>
-                                <option value="Georgetown">(GMT-04:00) Georgetown</option>
-                                <option value="La Paz">(GMT-04:00) La Paz</option>
-                                <option value="Puerto Rico">(GMT-04:00) Puerto Rico</option>
-                                <option value="Santiago">(GMT-04:00) Santiago</option>
-                                <option value="Newfoundland">(GMT-03:30) Newfoundland</option>
-                                <option value="Brasilia">(GMT-03:00) Brasilia</option>
-                                <option value="Buenos Aires">(GMT-03:00) Buenos Aires</option>
-                                <option value="Greenland">(GMT-03:00) Greenland</option>
-                                <option value="Montevideo">(GMT-03:00) Montevideo</option>
-                                <option value="Mid-Atlantic">(GMT-02:00) Mid-Atlantic</option>
-                                <option value="Azores">(GMT-01:00) Azores</option>
-                                <option value="Cape Verde Is.">(GMT-01:00) Cape Verde Is.</option>
-                                <option value="Edinburgh">(GMT+00:00) Edinburgh</option>
-                                <option value="Lisbon">(GMT+00:00) Lisbon</option>
-                                <option value="London">(GMT+00:00) London</option>
-                                <option value="Monrovia">(GMT+00:00) Monrovia</option>
-                                <option value="UTC">(GMT+00:00) UTC</option>
-                                <option value="Amsterdam">(GMT+01:00) Amsterdam</option>
-                                <option value="Belgrade">(GMT+01:00) Belgrade</option>
-                                <option value="Berlin">(GMT+01:00) Berlin</option>
-                                <option value="Bern">(GMT+01:00) Bern</option>
-                                <option value="Bratislava">(GMT+01:00) Bratislava</option>
-                                <option value="Brussels">(GMT+01:00) Brussels</option>
-                                <option value="Budapest">(GMT+01:00) Budapest</option>
-                                <option value="Casablanca">(GMT+01:00) Casablanca</option>
-                                <option value="Copenhagen">(GMT+01:00) Copenhagen</option>
-                                <option value="Dublin">(GMT+01:00) Dublin</option>
-                                <option value="Ljubljana">(GMT+01:00) Ljubljana</option>
-                                <option value="Madrid">(GMT+01:00) Madrid</option>
-                                <option value="Paris">(GMT+01:00) Paris</option>
-                                <option value="Prague">(GMT+01:00) Prague</option>
-                                <option value="Rome">(GMT+01:00) Rome</option>
-                                <option value="Sarajevo">(GMT+01:00) Sarajevo</option>
-                                <option value="Skopje">(GMT+01:00) Skopje</option>
-                                <option value="Stockholm">(GMT+01:00) Stockholm</option>
-                                <option value="Vienna">(GMT+01:00) Vienna</option>
-                                <option value="Warsaw">(GMT+01:00) Warsaw</option>
-                                <option value="West Central Africa">(GMT+01:00) West Central Africa</option>
-                                <option value="Zagreb">(GMT+01:00) Zagreb</option>
-                                <option value="Zurich">(GMT+01:00) Zurich</option>
-                                <option value="Athens">(GMT+02:00) Athens</option>
-                                <option value="Bucharest">(GMT+02:00) Bucharest</option>
-                                <option value="Cairo">(GMT+02:00) Cairo</option>
-                                <option value="Harare">(GMT+02:00) Harare</option>
-                                <option value="Helsinki">(GMT+02:00) Helsinki</option>
-                                <option value="Jerusalem">(GMT+02:00) Jerusalem</option>
-                                <option value="Kaliningrad">(GMT+02:00) Kaliningrad</option>
-                                <option value="Kyiv">(GMT+02:00) Kyiv</option>
-                                <option value="Pretoria">(GMT+02:00) Pretoria</option>
-                                <option value="Riga">(GMT+02:00) Riga</option>
-                                <option value="Sofia">(GMT+02:00) Sofia</option>
-                                <option value="Tallinn">(GMT+02:00) Tallinn</option>
-                                <option value="Vilnius">(GMT+02:00) Vilnius</option>
-                                <option value="Baghdad">(GMT+03:00) Baghdad</option>
-                                <option value="Istanbul">(GMT+03:00) Istanbul</option>
-                                <option value="Kuwait">(GMT+03:00) Kuwait</option>
-                                <option value="Minsk">(GMT+03:00) Minsk</option>
-                                <option value="Moscow">(GMT+03:00) Moscow</option>
-                                <option value="Nairobi">(GMT+03:00) Nairobi</option>
-                                <option value="Riyadh">(GMT+03:00) Riyadh</option>
-                                <option value="St. Petersburg">(GMT+03:00) St. Petersburg</option>
-                                <option value="Volgograd">(GMT+03:00) Volgograd</option>
-                                <option value="Tehran">(GMT+03:30) Tehran</option>
-                                <option value="Abu Dhabi">(GMT+04:00) Abu Dhabi</option>
-                                <option value="Baku">(GMT+04:00) Baku</option>
-                                <option value="Muscat">(GMT+04:00) Muscat</option>
-                                <option value="Samara">(GMT+04:00) Samara</option>
-                                <option value="Tbilisi">(GMT+04:00) Tbilisi</option>
-                                <option value="Yerevan">(GMT+04:00) Yerevan</option>
-                                <option value="Kabul">(GMT+04:30) Kabul</option>
-                                <option value="Ekaterinburg">(GMT+05:00) Ekaterinburg</option>
-                                <option value="Islamabad">(GMT+05:00) Islamabad</option>
-                                <option value="Karachi">(GMT+05:00) Karachi</option>
-                                <option value="Tashkent">(GMT+05:00) Tashkent</option>
-                                <option value="Chennai">(GMT+05:30) Chennai</option>
-                                <option value="Kolkata">(GMT+05:30) Kolkata</option>
-                                <option value="Mumbai">(GMT+05:30) Mumbai</option>
-                                <option value="New Delhi">(GMT+05:30) New Delhi</option>
-                                <option value="Sri Jayawardenepura">(GMT+05:30) Sri Jayawardenepura</option>
-                                <option value="Kathmandu">(GMT+05:45) Kathmandu</option>
-                                <option value="Almaty">(GMT+06:00) Almaty</option>
-                                <option value="Astana">(GMT+06:00) Astana</option>
-                                <option value="Dhaka">(GMT+06:00) Dhaka</option>
-                                <option value="Urumqi">(GMT+06:00) Urumqi</option>
-                                <option value="Rangoon">(GMT+06:30) Rangoon</option>
-                                <option value="Bangkok">(GMT+07:00) Bangkok</option>
-                                <option value="Hanoi">(GMT+07:00) Hanoi</option>
-                                <option value="Jakarta">(GMT+07:00) Jakarta</option>
-                                <option value="Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
-                                <option value="Novosibirsk">(GMT+07:00) Novosibirsk</option>
-                                <option value="Beijing">(GMT+08:00) Beijing</option>
-                                <option value="Chongqing">(GMT+08:00) Chongqing</option>
-                                <option value="Hong Kong">(GMT+08:00) Hong Kong</option>
-                                <option value="Irkutsk">(GMT+08:00) Irkutsk</option>
-                                <option value="Kuala Lumpur">(GMT+08:00) Kuala Lumpur</option>
-                                <option value="Perth">(GMT+08:00) Perth</option>
-                                <option value="Singapore">(GMT+08:00) Singapore</option>
-                                <option value="Taipei">(GMT+08:00) Taipei</option>
-                                <option value="Ulaanbaatar">(GMT+08:00) Ulaanbaatar</option>
-                                <option value="Osaka">(GMT+09:00) Osaka</option>
-                                <option value="Sapporo">(GMT+09:00) Sapporo</option>
-                                <option value="Seoul">(GMT+09:00) Seoul</option>
-                                <option value="Tokyo">(GMT+09:00) Tokyo</option>
-                                <option value="Yakutsk">(GMT+09:00) Yakutsk</option>
-                                <option value="Adelaide">(GMT+09:30) Adelaide</option>
-                                <option value="Darwin">(GMT+09:30) Darwin</option>
-                                <option value="Brisbane">(GMT+10:00) Brisbane</option>
-                                <option value="Canberra">(GMT+10:00) Canberra</option>
-                                <option value="Guam">(GMT+10:00) Guam</option>
-                                <option value="Hobart">(GMT+10:00) Hobart</option>
-                                <option value="Melbourne">(GMT+10:00) Melbourne</option>
-                                <option value="Port Moresby">(GMT+10:00) Port Moresby</option>
-                                <option value="Sydney">(GMT+10:00) Sydney</option>
-                                <option value="Vladivostok">(GMT+10:00) Vladivostok</option>
-                                <option value="Magadan">(GMT+11:00) Magadan</option>
-                                <option value="New Caledonia">(GMT+11:00) New Caledonia</option>
-                                <option value="Solomon Is.">(GMT+11:00) Solomon Is.</option>
-                                <option value="Srednekolymsk">(GMT+11:00) Srednekolymsk</option>
-                                <option value="Auckland">(GMT+12:00) Auckland</option>
-                                <option value="Fiji">(GMT+12:00) Fiji</option>
-                                <option value="Kamchatka">(GMT+12:00) Kamchatka</option>
-                                <option value="Marshall Is.">(GMT+12:00) Marshall Is.</option>
-                                <option value="Wellington">(GMT+12:00) Wellington</option>
-                                <option value="Chatham Is.">(GMT+12:45) Chatham Is.</option>
-                                <option value="Nuku'alofa">(GMT+13:00) Nuku'alofa</option>
-                                <option value="Samoa">(GMT+13:00) Samoa</option>
-                                <option value="Tokelau Is.">(GMT+13:00) Tokelau Is.</option>
-                            </select>
-                        </div>
-                    </div> -->
                     <div class="form-group mb-1.5 flex items-center gap-2">
                         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-500">
                             <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path>
@@ -278,89 +114,7 @@
         </div>
 
         <!-- status popup -->
-        <div class="status-popup fixed top-0 left-0 z-40 bg-black/70 w-full h-full flex justify-center items-center" v-if="statusPopup">
-            <div class="popup-main max-w-[400px] min-w-[400px] rounded border border-gray-700 bg-[#0d1117]">
-                <div class="popup-head px-5 flex justify-between items-center py-4 bg-white/5">
-                    <h2 class="text-gray-300 text-sm font-medium">Edit Status</h2>
-                    <button @click="statusPopup = false">
-                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="fill-gray-400 hover:fill-blue-400">
-                            <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="popup-top-bar w-full p-4 border-t border-b border-gray-700">
-                    <div class="input-group flex">
-                        <button class="border border-r-0 border-gray-700 w-[50px] rounded-md rounded-r-none bg-white/5 py-1">
-                            <svg class="fill-gray-500 mx-auto" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z"></path>
-                            </svg>
-                        </button>
-                        <input type="text" class="border border-gray-700 rounded-md w-full py-1 bg-dark-primary rounded-l-none focus:border-blue-400 focus:outline focus:ring-blue-400 px-3">
-                    </div>
-                    <div class="flex items-start mt-4">
-                        <input type="checkbox" id="busy" class="rounded border border-gray-600" value="busy">
-                        <div class="mt-[-5px] ml-2">
-                            <label for="busy" class="inline-block mb-1 text-gray-200 text-[15px]">Busy</label>
-                            <p class="text-xs text-gray-400">When others mention you, assign you, or request your review, GitHub will let them know that you have limited availability.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="popup-main px-5 py-4">
-                    <div class="flex items-center gap-2">
-                        <p class="text-gray-300 text-sm ">Clear status</p>
-                        <div class="relative">
-                            <button class="text-gray-400 rounded-md text-[12px] bg-white/5 border border-gray-700 flex justify-between items-center px-3" @click="clearTimeMenu = !clearTimeMenu">
-                                <div class="flex gap-2 justify-between items-center">
-                                    <span class="flex items-center font-semibold py-1">{{statusExpire}}</span>
-                                </div>
-                                <span class="ml-2 h-7 leading-[43px]"><span class="dropdown-caret "></span></span>
-                            </button>
-                            <div class="clear-dropdown absolute top-9 left-0 py-1 z-30 rounded bg-dark-primary border border-gray-700 w-[250px]" v-if="clearTimeMenu">
-                                <ul>
-                                    <li>
-                                        <button class="group block text-left w-full px-3 py-2 text-gray-400 text-[13px] hover:bg-blue-500 hover:text-white" @click="setStatusExpire('Never')">
-                                            <p class="text-gray-200">Never</p>
-                                            <p class="text-gray-400 text-xs group-hover:text-gray-200">Keep this status until you clear your status or edit your status.</p>
-                                        </button>
-                                    </li>
-                                    <li class="border-t border-gray-700 mt-2">
-                                        <button class="group block text-left w-full px-3 py-1 text-gray-400 text-[13px] hover:bg-blue-500 hover:text-white" @click="setStatusExpire('in 30 minutes')">
-                                            in 30 minutes
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="group block text-left w-full px-3 py-1 text-gray-400 text-[13px] hover:bg-blue-500 hover:text-white" @click="setStatusExpire('in 1 hour')">
-                                            in 1 hour
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="group block text-left w-full px-3 py-1 text-gray-400 text-[13px] hover:bg-blue-500 hover:text-white" @click="setStatusExpire('in 4 hour')">
-                                            in 4 hour
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="group block text-left w-full px-3 py-1 text-gray-400 text-[13px] hover:bg-blue-500 hover:text-white" @click="setStatusExpire('today')">
-                                            today
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="group block text-left w-full px-3 py-1 text-gray-400 text-[13px] hover:bg-blue-500 hover:text-white" @click="setStatusExpire('this week')">
-                                            this week
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="py-5 border-t border-gray-800 px-4">
-                    <div class="flex items-center gap-2">
-                        <button type="submit" class="hover:bg-green-600 bg-green-primary border border-gray-700 w-full px-3 py-1.5 text-sm rounded-md text-white flex items-center justify-center gap-x-1 font-medium">Set Status</button>
-                        <button type="button" class="bg-transparent hover:bg-red-500 border border-gray-700 w-full px-3 py-1.5 text-sm rounded-md text-red-500 hover:text-white flex items-center justify-center gap-x-1 font-medium">Clear Status</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+       <StatusPopup v-if="statusPopup" @closePopup="closePopup" />
 
          <!-- success toast -->
         <div id="toast-success" class="flex fixed sm:right-10 right-2 bottom-5 z-50 items-center sm:px-4 sm:py-4 py-3 px-2 mb-4 w-full max-w-[280px] sm:max-w-xs text-gray-200 rounded bg-[#0d1117]  border border-gray-700 shadow  animate__animated animate__fadeInRight" role="alert" v-if="toast && errorType == 'success'">
@@ -385,8 +139,20 @@
 <script>
     import { usersStore } from '../stores/usersStore'
     import { Octokit } from "@octokit/core";
+    import StatusPopup from './StatusPopup.vue'
     export default {
         name: 'Profile',
+        components: {
+            StatusPopup,
+        },
+        setup() {
+            const store = usersStore()
+
+            return {
+                // you can return the whole store instance to use it in the template
+                store,
+            }
+        },
         data() {
             return {
                 loggedInUser: {},
@@ -397,14 +163,6 @@
                 statusPopup: false,
                 clearTimeMenu: false,
                 statusExpire: 'Never',
-            }
-        },
-        setup() {
-            const store = usersStore()
-
-            return {
-                // you can return the whole store instance to use it in the template
-                store,
             }
         },
         mounted() {
@@ -449,11 +207,11 @@
                     }, 4000)
                 })
             },
-
-            // setStatus
-            setStatusExpire(value){
-                this.statusExpire = value
-                this.clearTimeMenu = false
+            // clsoe popup
+            closePopup(value){
+                if(value){
+                    this.statusPopup = false
+                }
             }
 
         }

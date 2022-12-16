@@ -5,6 +5,7 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@vitejs/plugin-basic-ssl": "^1.0.1",
         "autoprefixer": "^10.4.13",
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.0",
@@ -18,8 +19,10 @@
         "@octokit/rest": "^19.0.5",
         "@vitejs/plugin-vue": "^3.2.0",
         "animate.css": "^4.1.1",
+        "fs": "^0.0.1-security",
         "isomorphic-fetch": "^3.0.0",
         "jquery": "^3.6.2",
+        "mkcert": "^1.5.1",
         "moment": "^2.29.4",
         "octokit": "^2.0.10",
         "pinia": "^2.0.27",
@@ -28,7 +31,6 @@
         "vue-axios": "^3.5.2",
         "vue-click-outside": "^1.1.0",
         "vue-router": "^4.1.5",
-        "vue-social-auth": "^1.4.9",
         "vue3-select2-component": "^0.1.7"
     }
 }

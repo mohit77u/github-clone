@@ -17,7 +17,7 @@
             <!-- repositories data -->
             <div class="repositories pt-2 pb-12">
                 <div class="repo py-1.5" v-for="(repo, index) in repositories.slice(0, this.showMore ? -1 : 7)" :key="index">
-                    <router-link :to="repo.full_name" class="flex items-center">
+                    <router-link :to="{name: 'RepositorySingle', params: {username: repo.owner.login, repository: repo.name}}" class="flex items-center">
                         <img :src="repo.owner.avatar_url" :alt="repo.name" class="w-5 h-5 rounded-full">
                         <h4 class="text-gray-300 text-[14px] ml-2 hover:underline underline-offset-2">{{repo.full_name}}</h4>
                     </router-link>

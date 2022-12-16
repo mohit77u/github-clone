@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import basicSsl from '@vitejs/plugin-basic-ssl'
+
 
 export default defineConfig({
     plugins: [
@@ -19,6 +21,7 @@ export default defineConfig({
                 },
             },
         }),
+        // basicSsl(),
     ],
     resolve: {
         alias: {
@@ -26,7 +29,12 @@ export default defineConfig({
             'node-fetch': 'isomorphic-fetch',
         },
     },
-    // define: {
-    //     global: {}
-    // }
+    server: {
+        // https: true,
+        // host: 'github-clone.test',
+        // port: 8890,
+        // hmr: {
+        //     host: 'github-clone.test'
+        // },
+    },
 });
